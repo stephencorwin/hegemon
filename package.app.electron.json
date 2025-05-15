@@ -1,0 +1,48 @@
+{
+  "name": "Hegemon",
+  "version": "0.0.1",
+  "description": "Tradier custom client with a strategy builder, macros, and algorithmic execution.",
+  "author": {
+    "name": "Stephen Corwin",
+    "email": "stephenjcorwin@gmail.com"
+  },
+  "main": "electron.js",
+  "build": {
+    "appId": "com.hegemon.app",
+    "productName": "Hegemon",
+    "artifactName": "hegemon-${version}.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "stephencorwin",
+        "repo": "hegemon"
+      }
+    ],
+    "directories": {
+      "app": ".",
+      "output": "../../.webpack.dist/app"
+    },
+    "files": ["**/*"],
+    "icon": "./assets/icon.png",
+    "nodeVersion": "current",
+    "win": {},
+    "mac": {
+      "target": "dmg",
+      "category": "Games"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Game"
+    }
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "electron-log": "^5.4.0",
+    "electron-updater": "^6.6.2",
+    "express": "^5.1.0",
+    "request": "2.88.2"
+  },
+  "devDependencies": {
+    "electron": "36.3.1"
+  }
+}

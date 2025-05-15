@@ -1,0 +1,28 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# production
+.webpack.build
+.webpack.dist
+
+# misc
+.DS_Store
+.graphqlconfig
+
+# generated files
+*.log*
+*.map
+*.d.ts
+*.js
+!jest.config.js
+!.types/**
+!.webpack/**
+
+#env
+.env/app
+.env/app.dev

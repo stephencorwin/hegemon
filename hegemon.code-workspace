@@ -1,0 +1,84 @@
+{
+  "folders": [
+    {
+      "name": "Hegemon",
+      "path": "."
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "pmneo.tsimporter",
+      "jpoissonnier.vscode-styled-components"
+    ]
+  },
+  "settings": {
+    "window.title": "${dirty}${activeEditorMedium}${separator}Hegemon",
+    "files.exclude": {
+      "lgr.code-workspace": true,
+
+      // git
+      "**/.git": false,
+      "**/.github": false,
+
+      // generated files
+      "**/package-lock.json": true,
+      "**/node_modules": true,
+      "**/.DS_Store": true,
+      "**/*.log": true,
+      "**/*.js": {"when": "$(basename).ts"},
+      "**/*?.js": {"when": "$(basename).tsx"},
+      "**/*.js.map": true,
+      "**/*.d.ts": {"when": "$(basename).ts"},
+
+      // generated folders
+      "**/.webpack.build": true,
+      "**/.webpack.dist": true,
+      "**/.vscode": true
+    },
+    "search.exclude": {
+      // git
+      "**/.git": true,
+      "**/.github": true,
+
+      // generated files
+      "**/package-lock.json": true,
+      "**/node_modules": true,
+      "**/.DS_Store": true,
+      "**/*.log": true,
+      "**/*.js": {"when": "$(basename).ts"},
+      "**/*?.js": {"when": "$(basename).tsx"},
+      "**/*.js.map": true,
+      "**/*.d.ts": {"when": "$(basename).ts"},
+
+      // generated folders
+      "**/.webpack.build": true,
+      "**/.webpack.dist": true,
+      "**/.vscode": true
+    },
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "[html]": {
+      "editor.formatOnSave": false
+    },
+    "prettier.requireConfig": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
+    "eslint.format.enable": true,
+    "typescript.format.enable": false,
+    "javascript.format.enable": false,
+    "json.format.enable": false,
+    "html.format.enable": false
+  }
+}
