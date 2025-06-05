@@ -16,16 +16,18 @@ Tradier custom client with a strategy builder, macros, and algorithmic execution
 - Generate an API key for both accounts
 - Download the latest stable release from the [releases page in this repository](https://github.com/stephencorwin/hegemon/releases/latest)
 - Register both accounts using their respective API Keys flagging "Paper Trading" for the paper/sandbox account.
-- (Optional) Tradier has a `$0.40` fee per options contract traded. This fee can be reduced to a maximum of `$35` a month in most cases by using their premimum plan. **Paper trading does not incur any fees.** I am not sponsored, but would recommend doing cost analysis on which plan would be cheaper based on expected usage.
+- *(Optional)* Tradier has a `$0.40` fee per options contract traded. This fee can be reduced to a maximum of `$35` a month in most cases by using their premium plan. **Paper trading does not incur any fees.**  
+I am not sponsored, but would recommend doing cost analysis on which plan would be cheaper based on expected usage.
   - **Example:** 4 days a week (`16-20 days a month`) on an average of 3 options opened and closed in the same day (`6 contracts x 0.40`) would be `$38.40` in monthly fees. In this case, `$3.40` would have been saved by using the premium plan.
 
 ## Why Tradier and not...?
 
-| Name                | API Documentation | Market Data   | Margin Accounts | Cash Accounts | Notes                                                                                                          |
-| :------------------ | :---------------- | :------------ | :-------------- | :------------ | :------------------------------------------------------------------------------------------------------------- |
-| Tradier             | 10/10             | Free          | ✅               | ✅             |                                                                                                                |
-| Alpaca.markets      | 7/10              | $99 per month | ✅               | ❌             |                                                                                                                |
-| Interactive Brokers | 2/10              | Free          | ✅               | ✅             | Authentication is horrible. Requires a separate program that requires reauthentication multiple times per day. |
+| Name                | API Documentation | Market Data   | Margin Accounts | Cash Accounts | Notes                                                                                                                                                                                                         |
+| :------------------ | :---------------- | :------------ | :-------------- | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tradier             | 10/10             | Free          | ✅               | ✅             |                                                                                                                                                                                                               |
+| Alpaca.markets      | 7/10              | $99 per month | ✅               | ❌             |                                                                                                                                                                                                               |
+| Interactive Brokers | 2/10              | Free          | ✅               | ✅             | Authentication is horrible. Requires a separate program that requires reauthentication multiple times per day.                                                                                                |
+| Robinhood           | 0/10              | ❌             | ✅               | ✅             | There is an unofficial API, but it is reported that Robinhood actively warns/bans accounts that leverage it. Their stance is that they do not want folks using an API for stocks/option trading at this time. |
 
 I did a small proof of concept for each of the above and Tradier ultimately serviced my needs the best. I did like Alpaca.markets as it was the one I initially started with. However, I was disappointed to find out that they did not support cash accounts. Since my primary strategy is Options Day-Trading, this meant that I would need to meet the Pattern Day-Trader restrictions with Alpaca. Cash accounts are not bound by these restrictions.
 
