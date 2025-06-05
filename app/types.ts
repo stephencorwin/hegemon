@@ -302,11 +302,9 @@ export interface IHegemonStore {
     balances: {
       total: number;
       available: number;
-      unsettled: number;
       fetch: () => Promise<{
         total: number;
         available: number;
-        unsettled: number;
       }>;
     };
     positions: {

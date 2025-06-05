@@ -77,15 +77,12 @@ export function useTradier() {
         total: balances.total_equity,
         ...(balances.account_type === ACCOUNT_TYPE.CASH && {
           available: balances.cash.cash_available,
-          unsettled: balances.cash.unsettled,
         }),
         ...(balances.account_type === ACCOUNT_TYPE.MARGIN && {
           available: balances.margin.option_buying_power,
-          unsettled: 0,
         }),
         ...(balances.account_type === ACCOUNT_TYPE.PDT && {
           available: balances.pdt.option_buying_power,
-          unsettled: 0,
         }),
       };
     };

@@ -56,9 +56,7 @@ export function createStore(overrides?: {
     account: {
       balances: {
         total: 0,
-        buyingPower: 0,
         available: 0,
-        unsettled: 0,
         //@ts-ignore
         fetch: defaultHandler('[account.balances] fetch'),
       },

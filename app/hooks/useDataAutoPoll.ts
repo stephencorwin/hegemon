@@ -145,7 +145,6 @@ export function useDataAutoPoll() {
 
     store.account.balances.total = balancesData.total;
     store.account.balances.available = balancesData.available;
-    store.account.balances.unsettled = balancesData.unsettled;
   }, [account.balances.fetch]);
   useEffect(() => {
     const intervalId = setInterval(
