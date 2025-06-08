@@ -3,6 +3,7 @@ import cors from 'cors';
 import request from 'request';
 import fs from 'fs';
 import path from 'path';
+import pkg from '../../package.app.electron.json';
 import {
   IFileProfile,
   IFileProfiles,
@@ -77,11 +78,12 @@ export function connectElectron(app, win) {
   });
   0;
 
-  const appDataPath = path.join(app.getPath('appData'), 'hegemon');
+  const appDataPath = path.join(app.getPath('appData'), pkg.name);
   const dataPath = path.join(appDataPath, 'data');
+
   // ensure that the directory exists
   if (!fs.existsSync(dataPath)) {
-    fs.mkdirSync(dataPath);
+    fs.mkdirSync(dataPath, {recursive: true});
   }
 
   function readFile<T>(pathname: string): T {
