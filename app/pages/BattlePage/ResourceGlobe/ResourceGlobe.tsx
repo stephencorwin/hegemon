@@ -1,4 +1,5 @@
 import React from 'react';
+import {isFinite} from 'lodash';
 import {
   StyledGlobe,
   ManaBarWrapper,
@@ -22,12 +23,14 @@ export interface IResourceGlobeProps {
 
 function getManaProgressDegrees(current: number, max: number) {
   const maxDegrees = 110;
-  const percent = Math.min(1, current / max) * maxDegrees;
+  let percent = Math.min(1, current / max) * maxDegrees;
+  if (!isFinite(percent)) percent = 0;
   return `${percent}deg`;
 }
 
 function getHealthProgressPercent(current: number, max: number) {
-  const percent = (1 - Math.min(1, current / max)) * 100;
+  let percent = (1 - Math.min(1, current / max)) * 100;
+  if (!isFinite(percent)) percent = 0;
   return `${percent}%`;
 }
 
