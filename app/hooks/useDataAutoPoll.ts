@@ -173,6 +173,28 @@ export function useDataAutoPoll() {
     if (!positionsData) return;
 
     store.account.positions.cache = positionsData;
+
+    // Calculate the maximum health and mana leveraging the current open
+    // positions as a dynamic offset.
+    if (!store.status.accountBalancesFetched) return;
+    const {healthChange, manaSpent} = Object.values(positionsData).reduce(
+      (acc, position) => {
+        const isOption = !!position.optionSymbol;
+        const quantity = position.quantity * (isOption ? 100 : 1);
+
+        // add up total change values
+        acc.healthChange += position.change * quantity;
+
+        // add up spent mana
+        acc.manaSpent += position.costBasis;
+        return acc;
+      },
+      {healthChange: 0, manaSpent: 0}
+    );
+    store.status.health.current = store.account.balances.total;
+    store.status.health.max = store.account.balances.total - healthChange;
+    store.status.mana.current = store.account.balances.available;
+    store.status.mana.max = store.account.balances.available + manaSpent;
   }, [account.positions.fetch]);
   useEffect(() => {
     const intervalId = setInterval(

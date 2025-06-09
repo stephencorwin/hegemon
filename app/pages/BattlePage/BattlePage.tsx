@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useHegemon} from '../../hooks';
 import {formatCurrency, formatPercent} from '../../formatters';
 import {DeepWriteable, IOrder, IPosition, ORDER_STATUS} from '../../types';
@@ -18,8 +18,9 @@ import {OrderTile} from './OrderTile';
 import {PositionTile} from './PositionTile';
 
 export function BattlePage() {
-  const {snapshot, store} = useHegemon();
+  const {snapshot} = useHegemon();
   const {status, profile, market, account} = snapshot;
+  const {health, mana} = status;
   const macroIds = Object.keys(profile.macros);
   const target = snapshot.market.subscribed.target;
   const optionsData = market.options.cache[target];
@@ -58,26 +59,13 @@ export function BattlePage() {
     []
   );
 
-  // the the initial mount, snapshot the account balance values
-  // to use for the max health/mana of the resource globe.
-  const [maxHealth, setMaxHealth] = useState(0);
-  const [maxMana, setMaxMana] = useState(0);
-  useEffect(() => {
-    if (!status.accountBalancesFetched) return;
-    setMaxHealth(store.account.balances.total);
-    setMaxMana(store.account.balances.available);
-  }, [status.accountBalancesFetched]);
-
   return (
     <Main>
       <LogoutButton onClick={() => snapshot.logout()}>Logout</LogoutButton>
       <MacroBarLeft macroIds={macroIds.slice(0, 5)} />
       <LimitBreakLeft />
       <MacroBarRight macroIds={macroIds.slice(5, 10)} />
-      <ResourceGlobe
-        health={{current: account.balances.total, max: maxHealth}}
-        mana={{current: account.balances.available, max: maxMana}}
-      />
+      <ResourceGlobe health={health} mana={mana} />
       <WatchList symbols={profile.settings.watchlist} />
 
       {target && (

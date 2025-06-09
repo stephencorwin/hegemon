@@ -44,18 +44,20 @@ export function ResourceGlobe({health, mana}: IResourceGlobeProps) {
           '--progress': getHealthProgressPercent(health.current, health.max),
         }}
       />
-      <ManaBarWrapper>
-        <ManaBarLabel>
-          {Math.floor(Math.max(0, mana.current)).toLocaleString()}
-        </ManaBarLabel>
-        <ManaBar />
-        <ManaBarFill
-          style={{
-            // @ts-expect-error css variable
-            '--progress': getManaProgressDegrees(mana.current, mana.max),
-          }}
-        />
-      </ManaBarWrapper>
+      {mana.max !== 0 && (
+        <ManaBarWrapper>
+          <ManaBarLabel>
+            {Math.floor(Math.max(0, mana.current)).toLocaleString()}
+          </ManaBarLabel>
+          <ManaBar />
+          <ManaBarFill
+            style={{
+              // @ts-expect-error css variable
+              '--progress': getManaProgressDegrees(mana.current, mana.max),
+            }}
+          />
+        </ManaBarWrapper>
+      )}
     </StyledGlobe>
   );
 }

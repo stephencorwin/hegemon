@@ -35,6 +35,15 @@ export function createStore(overrides?: {
     status: {
       initialized: false,
       loading: false,
+      accountBalancesFetched: false,
+      health: {
+        current: 0,
+        max: 0,
+      },
+      mana: {
+        current: 0,
+        max: 0,
+      },
     },
     //@ts-ignore
     registerProfile: defaultHandler('[registerProfile] registerProfile'),

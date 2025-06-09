@@ -113,6 +113,8 @@ export function useAuth() {
       store.profile = undefined;
       store.status.initialized = false;
       store.status.accountBalancesFetched = false;
+      store.status.health = {current: 0, max: 0};
+      store.status.mana = {current: 0, max: 0};
     };
   }, [store]);
 

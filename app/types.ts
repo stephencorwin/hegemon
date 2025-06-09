@@ -238,6 +238,16 @@ export interface IHegemonStore {
 
     // track whether the account balances have been fetched yet or not
     accountBalancesFetched?: boolean;
+
+    // dynamic representation of buying power and balances
+    health: {
+      current: number;
+      max: number;
+    };
+    mana: {
+      current: number;
+      max: number;
+    };
   };
   registerProfile: (apiKey: string, isPaper?: boolean) => Promise<void>;
   unregisterProfile: (id: string) => Promise<void>;
