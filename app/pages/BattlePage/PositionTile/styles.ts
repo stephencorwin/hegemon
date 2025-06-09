@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Tile = styled.div`
   display: flex;
   flex-direction: column;
-  width: 175px;
-  height: 225px;
+  width: 200px;
+  height: 250px;
   background-color: ${({theme}) => theme.colors.whiteLight};
   padding: ${({theme}) => theme.spacings.xs};
   box-shadow: ${({theme}) => theme.shadows.raised1};
@@ -101,7 +101,7 @@ export const SellButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 38px;
+  width: 25%;
   height: 38px;
   background-color: ${({theme}) => theme.colors.white};
   color: ${({theme}) => theme.colors.black};
@@ -109,7 +109,13 @@ export const SellButton = styled.button`
   text-shadow: none;
 `;
 
-export const SellAllButton = styled(SellButton)`
+export const SellButtonHalf = styled(SellButton)`
+  margin-top: ${({theme}) => theme.spacings.xs};
+  height: 30px;
+  width: 50%;
+`;
+
+export const SellButtonFull = styled(SellButton)`
   margin-top: ${({theme}) => theme.spacings.xs};
   height: 30px;
   width: 100%;

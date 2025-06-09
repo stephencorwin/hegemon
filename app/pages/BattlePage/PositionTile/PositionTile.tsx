@@ -7,7 +7,7 @@ import {
   StatusWrapper,
   StatusTextWrapper,
   SellButton,
-  SellAllButton,
+  SellButtonHalf,
   SellButtonsWrapper,
   EmptyValue,
   FillValue,
@@ -36,19 +36,25 @@ export function PositionTile({id}: IPositionTileProps) {
   } = positionData;
   const isOption = !!positionData.optionSymbol;
 
-  const handleSell = (quantity: number) => () => {
-    if (isOption) {
-      market.options.sell(symbol, optionSymbol, sellAsk, quantity);
-    } else {
-      market.stocks.sell(symbol, sellAsk, quantity);
-    }
-  };
+  const handleSell =
+    (quantity: number, limit: number = sellAsk) =>
+    () => {
+      if (isOption) {
+        market.options.sell(symbol, optionSymbol, limit, quantity);
+      } else {
+        market.stocks.sell(symbol, limit, quantity);
+      }
+    };
 
-  // const changePercent = 0.15;
   const goalPercent =
     changePercent <= 0
       ? 0
-      : changePercent / settings.thresholds.profit.positionGoal;
+      : changePercent / (settings.thresholds.profit.positionGoal - 1);
+  const goalValue = price * settings.thresholds.profit.positionGoal;
+  const goalValueDoubled =
+    price * (settings.thresholds.profit.positionGoal * 2 - 1);
+  const goalLabel = settings.thresholds.profit.positionGoal - 1;
+  const goalLabelDoubled = goalLabel * 2;
   return (
     <Tile>
       <StatusWrapper>
@@ -80,12 +86,45 @@ export function PositionTile({id}: IPositionTileProps) {
 
       <SellButtonsWrapper>
         <div>
-          <SellButton onClick={handleSell(quantity * 0.1)}>-10%</SellButton>
-          <SellButton onClick={handleSell(quantity * 0.2)}>-20%</SellButton>
-          <SellButton onClick={handleSell(quantity * 0.33)}>-33%</SellButton>
-          <SellButton onClick={handleSell(quantity * 0.5)}>-50%</SellButton>
+          <SellButton
+            onClick={handleSell(quantity * 0.1)}
+            title="Attempt to sell 10% of the remaining quantity at the current price."
+          >
+            -10%
+          </SellButton>
+          <SellButton
+            onClick={handleSell(quantity * 0.25)}
+            title="Attempt to sell 25% of the remaining quantity at the current price."
+          >
+            -25%
+          </SellButton>
+          <SellButton
+            onClick={handleSell(quantity * 0.5)}
+            title="Attempt to sell 50% of the remaining quantity at the current price."
+          >
+            -50%
+          </SellButton>
+          <SellButton
+            onClick={handleSell(quantity)}
+            title="Attempt to sell 100% of the remaining quantity at the current price."
+          >
+            -100%
+          </SellButton>
         </div>
-        <SellAllButton onClick={handleSell(quantity)}>SELL 100%</SellAllButton>
+        <div>
+          <SellButtonHalf
+            onClick={handleSell(quantity, goalValue)}
+            title={`Sell ${quantity} at ${formatCurrency(goalValue)} (1x Position Goal)`}
+          >
+            Goal: {formatPercent(goalLabel)}
+          </SellButtonHalf>
+          <SellButtonHalf
+            onClick={handleSell(quantity, goalValueDoubled)}
+            title={`Sell ${quantity} at ${formatCurrency(goalValueDoubled)} (2x Position Goal)`}
+          >
+            Goal: {formatPercent(goalLabelDoubled)}
+          </SellButtonHalf>
+        </div>
       </SellButtonsWrapper>
     </Tile>
   );
