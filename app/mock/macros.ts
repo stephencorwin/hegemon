@@ -23,7 +23,7 @@ export const MACRO_FIRE_SHIELD: IMacro = {
       optionTranche: -1,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -44,7 +44,7 @@ export const MACRO_FLARE: IMacro = {
       optionTranche: +1,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -65,7 +65,7 @@ export const MACRO_FIREBALL: IMacro = {
       optionTranche: +2,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -86,7 +86,7 @@ export const MACRO_EXPLOSION: IMacro = {
       optionTranche: +3,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -107,7 +107,7 @@ export const MACRO_FIRE_STORM: IMacro = {
       optionTranche: +2,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
     {
@@ -117,7 +117,7 @@ export const MACRO_FIRE_STORM: IMacro = {
       optionTranche: +3,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
     {
@@ -127,7 +127,7 @@ export const MACRO_FIRE_STORM: IMacro = {
       optionTranche: +4,
       quantity: 2,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -147,7 +147,7 @@ export const MACRO_FROST_SHIELD: IMacro = {
       optionTranche: +1,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -168,7 +168,7 @@ export const MACRO_FROST_BOLT: IMacro = {
       optionTranche: -1,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -189,7 +189,7 @@ export const MACRO_ICE_LANCE: IMacro = {
       optionTranche: -2,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -210,7 +210,7 @@ export const MACRO_BLACK_HOLE: IMacro = {
       optionTranche: -3,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -231,7 +231,7 @@ export const MACRO_BLIZZARD: IMacro = {
       optionTranche: -2,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
     {
@@ -241,7 +241,7 @@ export const MACRO_BLIZZARD: IMacro = {
       optionTranche: -3,
       quantity: 1,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
     {
@@ -251,7 +251,7 @@ export const MACRO_BLIZZARD: IMacro = {
       optionTranche: -4,
       quantity: 2,
       automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
     },
   ],
@@ -272,7 +272,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: 0,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //     {
@@ -282,7 +282,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: 0,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //   ],
@@ -303,7 +303,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: +2,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //     {
@@ -313,7 +313,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: -2,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //   ],
@@ -334,7 +334,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: +2,
 //       quantity: 2,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //     {
@@ -344,7 +344,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: 0,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //     {
@@ -354,7 +354,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: 0,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //     {
@@ -364,7 +364,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: -2,
 //       quantity: 2,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //   ],
@@ -385,7 +385,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: -2,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 3, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 3, goal: 1.1},
 //       ],
 //     },
 //     {
@@ -395,7 +395,7 @@ export const MACRO_BLIZZARD: IMacro = {
 //       optionTranche: +2,
 //       quantity: 1,
 //       automation: [
-//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.2},
+//         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
 //       ],
 //     },
 //   ],
