@@ -62,8 +62,8 @@ export function BattlePage() {
   return (
     <Main>
       <LogoutButton onClick={() => snapshot.logout()}>Logout</LogoutButton>
-      <MacroBarLeft macroIds={macroIds.slice(0, 5)} />
       <LimitBreakLeft />
+      <MacroBarLeft macroIds={macroIds.slice(0, 5)} />
       <MacroBarRight macroIds={macroIds.slice(5, 10)} />
       <ResourceGlobe health={health} mana={mana} />
       <WatchList symbols={profile.settings.watchlist} />

@@ -74,6 +74,7 @@ export function useDataAutoPoll() {
   /**
    * MARKET_OPTIONS
    */
+  const firstOptionsRequest = useRef(true);
   const marketOptionsCB = useCallback(async () => {
     console.debug('[market.options] polling data');
 
@@ -107,6 +108,17 @@ export function useDataAutoPoll() {
   ]);
   useEffect(() => {
     if (!stockDataReady) return;
+
+    // on the very first options request, fetch data for all subscribed options
+    if (firstOptionsRequest.current) {
+      market.subscribed.options.forEach(async (symbol, i) => {
+        // no need to double request the initial target
+        if (symbol === market.subscribed.target) return;
+
+        store.market.options.cache[symbol] = await market.options.fetch(symbol);
+      });
+      firstOptionsRequest.current = false;
+    }
 
     const intervalId = setInterval(
       marketOptionsCB,
