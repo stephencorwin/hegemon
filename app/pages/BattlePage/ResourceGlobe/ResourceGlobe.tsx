@@ -37,14 +37,16 @@ function getHealthProgressPercent(current: number, max: number) {
 export function ResourceGlobe({health, mana}: IResourceGlobeProps) {
   return (
     <StyledGlobe>
-      <HealthLabel>{Math.floor(health.current).toLocaleString()}</HealthLabel>
+      {!!health.max && (
+        <HealthLabel>{Math.floor(health.current).toLocaleString()}</HealthLabel>
+      )}
       <HealthFill
         style={{
           // @ts-expect-error css variable
           '--progress': getHealthProgressPercent(health.current, health.max),
         }}
       />
-      {mana.max !== 0 && (
+      {!!mana.max && (
         <ManaBarWrapper>
           <ManaBarLabel>
             {Math.floor(Math.max(0, mana.current)).toLocaleString()}
