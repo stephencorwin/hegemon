@@ -9,7 +9,7 @@
 Tradier custom client with a strategy builder, macros, and algorithmic execution.
 
 ## Getting Started
-- Sign up for an account on [Tradier](https://trade.tradier.com/raf-open/?mwr=f95b587d)
+- Sign up for an account on [Tradier](https://auth.tradier.com/signup)
   - Make sure it is a **Cash Account** if the intent is to fund it with less than $25,000 so that you are not restricted by Pattern Day-Trading regulations.
   - Request **"Options Level 2"** as this level is required for buying/selling naked calls and puts.
 - Generate a paper/sandbox account
