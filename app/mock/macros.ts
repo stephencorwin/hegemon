@@ -84,6 +84,16 @@ export const MACRO_FIRE_STORM: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
+      optionTranche: +1,
+      quantity: 1,
+      automation: [
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
+      ],
+    },
+    {
+      action: MACRO_ACTION.BUY,
+      orderClass: ORDER_CLASS.OPTION,
+      optionType: OPTION_TYPE.CALL,
       optionTranche: +2,
       quantity: 1,
       automation: [
@@ -96,16 +106,6 @@ export const MACRO_FIRE_STORM: IMacro = {
       optionType: OPTION_TYPE.CALL,
       optionTranche: +3,
       quantity: 1,
-      automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
-      ],
-    },
-    {
-      action: MACRO_ACTION.BUY,
-      orderClass: ORDER_CLASS.OPTION,
-      optionType: OPTION_TYPE.CALL,
-      optionTranche: +4,
-      quantity: 2,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],
@@ -209,6 +209,16 @@ export const MACRO_BLIZZARD: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
+      optionTranche: -1,
+      quantity: 1,
+      automation: [
+        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
+      ],
+    },
+    {
+      action: MACRO_ACTION.BUY,
+      orderClass: ORDER_CLASS.OPTION,
+      optionType: OPTION_TYPE.PUT,
       optionTranche: -2,
       quantity: 1,
       automation: [
@@ -221,16 +231,6 @@ export const MACRO_BLIZZARD: IMacro = {
       optionType: OPTION_TYPE.PUT,
       optionTranche: -3,
       quantity: 1,
-      automation: [
-        {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
-      ],
-    },
-    {
-      action: MACRO_ACTION.BUY,
-      orderClass: ORDER_CLASS.OPTION,
-      optionType: OPTION_TYPE.PUT,
-      optionTranche: -4,
-      quantity: 2,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
       ],

@@ -10,7 +10,7 @@ import {
   DeepWriteable,
   ORDER_SIDE,
 } from '../types';
-import {calcOptionsVolumeSentiment} from '../math';
+import {calcOptionsVolumeSentiment, calcPrices} from '../math';
 import {formatNumber} from '../formatters';
 
 export const SANDBOX_URL = 'https://sandbox.tradier.com/v1';
@@ -157,9 +157,7 @@ export function useTradier() {
           optionStrike = link.strike;
         }
 
-        const midAsk = (ask + bid) / 2;
-        const buyAsk = midAsk + (ask - bid) * 0.5;
-        const sellAsk = midAsk - (ask - bid) * 0.5;
+        const {midAsk, buyAsk, sellAsk} = calcPrices(bid, ask);
         const change = formatNumber(sellAsk - price);
         const changePercent = formatNumber(sellAsk / price - 1, 3);
 
@@ -288,7 +286,7 @@ export function useTradier() {
       return (Array.isArray(quote) ? quote : [quote]).reduce<{
         [symbol: string]: IStock;
       }>((acc, quote) => {
-        const midAsk = (quote.ask + quote.bid) / 2;
+        const {midAsk, buyAsk, sellAsk} = calcPrices(quote.bid, quote.ask);
         acc[quote.symbol] = {
           symbol: quote.symbol,
           last: quote.last,
@@ -299,9 +297,9 @@ export function useTradier() {
           close: quote.close,
           bid: quote.bid,
           ask: quote.ask,
-          midAsk: midAsk,
-          buyAsk: midAsk + (quote.ask - quote.bid) * 0.5,
-          sellAsk: midAsk - (quote.ask - quote.bid) * 0.5,
+          midAsk,
+          buyAsk,
+          sellAsk,
           changePercentage: quote.change_percentage,
           volume: quote.volume,
           averageVolume: quote.average_volume,
@@ -421,7 +419,8 @@ export function useTradier() {
         if (link.strike > upperRange) return;
         if (link.strike < lowerRange) return;
 
-        const midAsk = (link.ask + link.bid) / 2;
+        const {midAsk, buyAsk, sellAsk} = calcPrices(link.bid, link.ask);
+
         const newLink: ILink = {
           symbol: symbol,
           optionSymbol: link.symbol,
@@ -429,8 +428,8 @@ export function useTradier() {
           ask: link.ask,
           bid: link.bid,
           midAsk,
-          buyAsk: midAsk + (link.ask - link.bid) * 0.5,
-          sellAsk: midAsk - (link.ask - link.bid) * 0.5,
+          buyAsk,
+          sellAsk,
           volume: link.volume,
           openInterest: link.open_interest,
         };
@@ -453,13 +452,13 @@ export function useTradier() {
       chain.call.below.splice(rangeCountLimit, chain.call.below.length);
       chain.put.below.splice(rangeCountLimit, chain.put.below.length);
 
-      const midAsk = (stock.ask + stock.bid) / 2;
+      const {midAsk, buyAsk, sellAsk} = calcPrices(stock.bid, stock.ask);
       return {
         symbol,
         ask: stock.ask,
         midAsk,
-        buyAsk: midAsk + (stock.ask - stock.bid) * 0.5,
-        sellAsk: midAsk - (stock.ask - stock.bid) * 0.5,
+        buyAsk,
+        sellAsk,
         bid: stock.bid,
         expiration,
         chain,

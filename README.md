@@ -32,12 +32,13 @@ I am not sponsored, but would recommend doing cost analysis on which plan would 
 I did a small proof of concept for each of the above and Tradier ultimately serviced my needs the best. I did like Alpaca.markets as it was the one I initially started with. However, I was disappointed to find out that they did not support cash accounts. Since my primary strategy is Options Day-Trading, this meant that I would need to meet the Pattern Day-Trader restrictions with Alpaca. Cash accounts are not bound by these restrictions.
 
 ## Automated bid-ask pricing
-Execution speed of intended macros is prioritized over small differences in the range of the bid-ask spread. The formulas below explain how we are biasing it, but essentially we are not using the mid-point for both, but instead using between the mid-point and the respective "execution speed" price to help guarantee order fulfillment.
+Execution speed of intended macros is prioritized over small differences in the range of the bid-ask spread. The formulas below explain how we are biasing it, but essentially we are not using the mid-point for both, but instead slightly biasing towards their respective "execution speed" price to help guarantee order fulfillment. In the future, there will be a customizable setting to prioritize how close towards the bid or ask is desired.
 
 Macros can specify a `limitOffset` and `limitPercent` to further bias in a desired direction.
 
-| Name      | Formula                          | Notes                                  |
-| :-------- | :------------------------------- | :------------------------------------- |
-| `midAsk`  | (`ask` + `bid`) / 2              | Mid-point between the ask and the bid. |
-| `buyAsk`  | `midAsk` + (`ask` - `bid`) * 0.5 | Slightly biased towards the ask price. |
-| `sellAsk` | `midAsk` - (`ask` - `bid`) * 0.5 | Slightly biased towards the bid price. |
+| Name      | Formula                | Notes                                   |
+| :-------- | :--------------------- | :-------------------------------------- |
+| `range`   | `ask` - `bid`          | Difference between the ask and the bid. |
+| `midAsk`  | `bid` + `range` * 0.5  | Mid-point between the ask and the bid.  |
+| `buyAsk`  | `bid` + `range` * 0.65 | Slightly biased towards the ask price.  |
+| `sellAsk` | `bid` + `range` * 0.35 | Slightly biased towards the bid price.  |

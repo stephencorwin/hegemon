@@ -70,3 +70,20 @@ export function getOrdersBalanceHoldingValue(orders: {
     return acc + value;
   }, 0);
 }
+
+/**
+ * Calculates various prices used for buying, selling, and comparisons
+ * Bias the direction of each slightly towards each side for execution speed.
+ */
+export function calcPrices(bid: number, ask: number) {
+  const range = ask - bid;
+  const midAsk = bid + range * 0.5;
+  const buyAsk = bid + range * 0.65;
+  const sellAsk = bid + range * 0.35;
+  return {
+    range: formatNumber(range, 2),
+    midAsk: formatNumber(midAsk, 2),
+    buyAsk: formatNumber(buyAsk, 2),
+    sellAsk: formatNumber(sellAsk, 2),
+  };
+}
