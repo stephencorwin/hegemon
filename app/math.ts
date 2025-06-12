@@ -81,9 +81,9 @@ export function calcPrices(bid: number, ask: number) {
   const buyAsk = bid + range * 0.65;
   const sellAsk = bid + range * 0.35;
   return {
-    range: formatNumber(range, 2),
-    midAsk: formatNumber(midAsk, 2),
-    buyAsk: formatNumber(buyAsk, 2),
-    sellAsk: formatNumber(sellAsk, 2),
+    range: formatNumber(range),
+    midAsk: formatNumber(midAsk),
+    buyAsk: formatNumber(buyAsk),
+    sellAsk: formatNumber(sellAsk),
   };
 }
