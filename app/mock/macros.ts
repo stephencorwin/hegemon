@@ -125,7 +125,7 @@ export const MACRO_FIRE_TICKET: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: +5,
+      optionTranche: +4,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -250,7 +250,7 @@ export const MACRO_ICE_TICKET: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: -5,
+      optionTranche: -4,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},

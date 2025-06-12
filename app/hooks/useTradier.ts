@@ -227,6 +227,9 @@ export function useTradier() {
             (link) => link.optionSymbol === optionSymbol
           );
 
+          // linkData not available escape
+          if (!link) return acc;
+
           optionStrike = link.strike;
         }
 
