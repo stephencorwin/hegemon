@@ -78,8 +78,8 @@ export function getOrdersBalanceHoldingValue(orders: {
 export function calcPrices(bid: number, ask: number) {
   const range = ask - bid;
   const midAsk = bid + range * 0.5;
-  const buyAsk = bid + range * 0.65;
-  const sellAsk = bid + range * 0.35;
+  const buyAsk = bid + range * 0.75;
+  const sellAsk = bid + range * 0.25;
   return {
     range: formatNumber(range),
     midAsk: formatNumber(midAsk),
