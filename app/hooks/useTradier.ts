@@ -397,9 +397,7 @@ export function useTradier() {
       const stock = store.market.stocks.cache[symbol];
       if (!stock) return;
 
-      const upperRange = stock.ask * 1.2;
-      const lowerRange = stock.ask * 0.8;
-      const rangeCountLimit = 15;
+      const rangeCountLimit = 30;
       const expiration = store.profile.settings.optionsExpiration;
 
       let url = `${BASE_URL}/markets/options/chains`;
@@ -417,11 +415,7 @@ export function useTradier() {
         [OPTION_TYPE.PUT]: {above: [], below: []},
       } as {[key in OPTION_TYPE]: {above: ILink[]; below: ILink[]}};
 
-      sortBy(option, (link) => link.strike).forEach((link, i) => {
-        // filter out the outliers
-        if (link.strike > upperRange) return;
-        if (link.strike < lowerRange) return;
-
+      sortBy(option, (link) => link.strike).forEach((link) => {
         const {midAsk, buyAsk, sellAsk} = calcPrices(link.bid, link.ask);
 
         const newLink: ILink = {
@@ -442,10 +436,8 @@ export function useTradier() {
 
         // sort the new link into the correct QOL arrays
         if (link.strike > stock.ask) {
-          if (chainAbove.length >= rangeCountLimit) return;
           chainAbove.push(newLink);
         } else {
-          // if (chainBelow.length >= rangeCountLimit) return;
           chainBelow.unshift(newLink);
         }
       });
