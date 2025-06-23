@@ -46,15 +46,23 @@ export function PositionTile({id}: IPositionTileProps) {
       }
     };
 
+  function getGoalValue(multiplier: number = 1) {
+    return (
+      price * (1 + (settings.thresholds.profit.positionGoal - 1) * multiplier)
+    );
+  }
+
+  function getGoalLabel(multiplier: number = 1) {
+    return formatPercent(
+      (settings.thresholds.profit.positionGoal - 1) * multiplier
+    );
+  }
+
   const goalPercent =
     changePercent <= 0
       ? 0
       : changePercent / (settings.thresholds.profit.positionGoal - 1);
-  const goalValue = price * settings.thresholds.profit.positionGoal;
-  const goalValueDoubled =
-    price * (settings.thresholds.profit.positionGoal * 2 - 1);
-  const goalLabel = settings.thresholds.profit.positionGoal - 1;
-  const goalLabelDoubled = goalLabel * 2;
+
   return (
     <Tile>
       <StatusWrapper>
@@ -113,16 +121,28 @@ export function PositionTile({id}: IPositionTileProps) {
         </div>
         <div>
           <SellButtonHalf
-            onClick={handleSell(quantity, goalValue)}
-            title={`Sell ${quantity} at ${formatCurrency(goalValue)} (1x Position Goal)`}
+            onClick={handleSell(quantity, getGoalValue(0))}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(0))} (${getGoalLabel(0)} profit)`}
           >
-            Goal: {formatPercent(goalLabel)}
+            {getGoalLabel(0)}
           </SellButtonHalf>
           <SellButtonHalf
-            onClick={handleSell(quantity, goalValueDoubled)}
-            title={`Sell ${quantity} at ${formatCurrency(goalValueDoubled)} (2x Position Goal)`}
+            onClick={handleSell(quantity, getGoalValue())}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue())} (${getGoalLabel(1)} profit)`}
           >
-            Goal: {formatPercent(goalLabelDoubled)}
+            {getGoalLabel()}
+          </SellButtonHalf>
+          <SellButtonHalf
+            onClick={handleSell(quantity, getGoalValue(2))}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(2))} (${getGoalLabel(2)} profit)`}
+          >
+            {getGoalLabel(2)}
+          </SellButtonHalf>
+          <SellButtonHalf
+            onClick={handleSell(quantity, getGoalValue(3))}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(3))} (${getGoalLabel(3)} profit)`}
+          >
+            {getGoalLabel(3)}
           </SellButtonHalf>
         </div>
       </SellButtonsWrapper>

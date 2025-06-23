@@ -15,12 +15,13 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       'AMZN',
       'HOOD',
       'UNH',
+      'HIMS',
     ],
     optionsExpiration: '2025-06-27',
     thresholds: {
       profit: {
-        dailyGoal: 1.1,
-        positionGoal: 1.1,
+        dailyGoal: 1.05,
+        positionGoal: 1.05,
       },
       stock: {
         changePercentIsHighlyPositive: 0.015,
