@@ -17,7 +17,7 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       'UNH',
       'HIMS',
     ],
-    optionsExpiration: '2025-06-27',
+    optionsExpiration: '2025-07-03',
     thresholds: {
       profit: {
         dailyGoal: 1.05,
