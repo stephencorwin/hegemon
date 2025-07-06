@@ -248,6 +248,11 @@ export interface IHegemonStore {
       current: number;
       max: number;
     };
+
+    // Potentially move back to settings
+    // but I think this is probably better
+    // as a non-persisted option
+    optionsExpiration: string;
   };
   registerProfile: (apiKey: string, isPaper?: boolean) => Promise<void>;
   unregisterProfile: (id: string) => Promise<void>;
@@ -268,7 +273,6 @@ export interface IHegemonStore {
     macros: {[id: string]: IMacro};
     settings: {
       watchlist: string[];
-      optionsExpiration: string;
       limitBreak: {
         maxOverride?: boolean;
         current: number;

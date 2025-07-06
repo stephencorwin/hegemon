@@ -398,7 +398,7 @@ export function useTradier() {
       if (!stock) return;
 
       const rangeCountLimit = 30;
-      const expiration = store.profile.settings.optionsExpiration;
+      const expiration = store.status.optionsExpiration;
 
       let url = `${BASE_URL}/markets/options/chains`;
       url += `?symbol=${symbol}`;
