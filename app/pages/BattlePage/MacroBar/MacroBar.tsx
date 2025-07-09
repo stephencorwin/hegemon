@@ -99,7 +99,7 @@ export function MacroBar({style, className, macroIds = []}: IMacroBarProps) {
           macroHydrated = hydrateMacroCoerced(macro, limitBreakPotential);
         }
 
-        const disabled = !macroHydrated.limit;
+        const disabled = macroHydrated.limit <= 0;
 
         return (
           <MacroButton
