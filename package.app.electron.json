@@ -1,6 +1,6 @@
 {
   "name": "Hegemon",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Tradier custom client with a strategy builder, macros, and algorithmic execution.",
   "author": {
     "name": "Stephen Corwin",
