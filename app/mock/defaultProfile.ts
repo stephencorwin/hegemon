@@ -19,8 +19,8 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
     ],
     thresholds: {
       profit: {
-        dailyGoal: 1.05,
-        positionGoal: 1.05,
+        dailyGoal: 1.15,
+        positionGoal: 1.15,
       },
       stock: {
         changePercentIsHighlyPositive: 0.015,

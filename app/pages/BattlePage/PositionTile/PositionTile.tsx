@@ -127,22 +127,22 @@ export function PositionTile({id}: IPositionTileProps) {
             {getGoalLabel(0)}
           </SellButtonHalf>
           <SellButtonHalf
-            onClick={handleSell(quantity, getGoalValue())}
-            title={`Sell ${quantity} at ${formatCurrency(getGoalValue())} (${getGoalLabel(1)} profit)`}
+            onClick={handleSell(quantity, getGoalValue(0.5))}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue())} (${getGoalLabel(0.5)} profit)`}
           >
-            {getGoalLabel()}
+            {getGoalLabel(0.5)}
           </SellButtonHalf>
           <SellButtonHalf
-            onClick={handleSell(quantity, getGoalValue(2))}
-            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(2))} (${getGoalLabel(2)} profit)`}
+            onClick={handleSell(quantity, getGoalValue(1))}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(2))} (${getGoalLabel(1)} profit)`}
           >
-            {getGoalLabel(2)}
+            {getGoalLabel(1)}
           </SellButtonHalf>
           <SellButtonHalf
-            onClick={handleSell(quantity, getGoalValue(3))}
-            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(3))} (${getGoalLabel(3)} profit)`}
+            onClick={handleSell(quantity, getGoalValue(1.5))}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(3))} (${getGoalLabel(1.5)} profit)`}
           >
-            {getGoalLabel(3)}
+            {getGoalLabel(1.5)}
           </SellButtonHalf>
         </div>
       </SellButtonsWrapper>
