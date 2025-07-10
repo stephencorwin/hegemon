@@ -52,7 +52,6 @@ export function hydrateMacro(
                   : 0) +
                 (leg.limitOffset ?? 0)
             ),
-            label: `${data.stocksData.symbol}: ${data.stocksData.ask}`,
             automation: leg.automation.reduce((acc2, auto) => {
               acc2.push({
                 ...auto,
@@ -110,7 +109,7 @@ export function hydrateMacro(
                 (leg.limitPercent ? trancheAsk * (1 - leg.limitPercent) : 0) +
                 (leg.limitOffset ?? 0)
             ),
-            label: `${trancheIsAbove ? '+' : ''}${netOptionTranche}: ${trancheAsk}`,
+            optionStrike: trancheData.strike,
             automation: leg.automation.reduce((acc2, auto) => {
               acc2.push({
                 ...auto,

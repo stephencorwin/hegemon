@@ -101,11 +101,20 @@ export function MacroBar({style, className, macroIds = []}: IMacroBarProps) {
 
         const disabled = macroHydrated.limit <= 0;
 
+        const trancheTooltipStrikePrice = macroHydrated.legs.reduce(
+          (acc, leg, i) => {
+            if (!!i) acc += ', ';
+            acc += `${leg.optionStrike}`;
+            return acc;
+          },
+          ''
+        );
+
         return (
           <MacroButton
             key={macro.id}
             style={{backgroundImage: `url('${macro.icon}')`}}
-            title={`${macro.name}: ${macro.description}`}
+            title={`[${trancheTooltipStrikePrice}] ${macro.name}: ${macro.description}`}
             disabled={disabled}
             {...(!disabled && {onClick: handleBuy(macroHydrated)})}
           >

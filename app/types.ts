@@ -180,11 +180,11 @@ export interface IMacroLegHydrated {
   symbol: string;
   optionSymbol?: string;
   limit: number;
-  label: string;
   action: MACRO_ACTION;
   orderClass: ORDER_CLASS;
   optionType?: OPTION_TYPE;
   optionTranche?: number;
+  optionStrike?: number;
   quantity: number;
   stopLoss?: number;
   automation: {
@@ -254,7 +254,11 @@ export interface IHegemonStore {
     // as a non-persisted option
     optionsExpiration: string;
   };
-  registerProfile: (apiKey: string, isPaper?: boolean) => Promise<void>;
+  registerProfile: (
+    apiKey: string,
+    isPaper?: boolean,
+    overwrite?: boolean
+  ) => Promise<void>;
   unregisterProfile: (id: string) => Promise<void>;
   login: (id: string, apiKey: string, isPaper: boolean) => Promise<void>;
   logout: () => Promise<void>;
