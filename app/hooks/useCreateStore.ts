@@ -44,7 +44,7 @@ export function createStore(overrides?: {
         current: 0,
         max: 0,
       },
-      optionsExpiration: '2025-07-11',
+      optionsExpiration: '2025-07-18',
     },
     //@ts-ignore
     registerProfile: defaultHandler('[registerProfile] registerProfile'),
