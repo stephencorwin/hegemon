@@ -29,9 +29,11 @@ export function ProfileTile({id, apiKey, isPaper}: IProfileTileProps) {
       <IdWrapper>{id}</IdWrapper>
       <ButtonsWrapper>
         <div>
-          <Button disabled>
-            Set Default{' '}
-            <span style={{fontSize: 10, marginLeft: 10}}>(SoonTM)</span>
+          <Button disabled>Set Default </Button>
+          <Button
+            onClick={() => snapshot.registerProfile(apiKey, isPaper, true)}
+          >
+            Reset
           </Button>
           <Button onClick={() => snapshot.unregisterProfile(id)}>
             Unregister

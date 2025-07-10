@@ -116,10 +116,11 @@ export function connectElectron(app, win) {
   });
 
   server.post('/profile/register', (req, res) => {
-    const profileRequestData: ISingleFileProfile = {
+    const profileRequestData: ISingleFileProfile & {overwrite?: boolean} = {
       id: req.body?.id,
       apiKey: req.body?.apiKey,
       isPaper: req.body?.isPaper !== undefined ? req.body.isPaper : false,
+      overwrite: req.body?.overwrite !== undefined ? req.body.overwrite : false,
     };
 
     if (!profileRequestData.id || !profileRequestData.apiKey) return;
@@ -138,9 +139,10 @@ export function connectElectron(app, win) {
     writeFile<IFileProfiles>(path.join(dataPath, 'profiles.json'), profiles);
 
     // create or update the existing profile
-    const existingProfile = readFile<IFileProfile>(
-      path.join(dataPath, getProfileFileName(profileRequestData.id))
-    ) ?? {macros: {}, settings: {}};
+    const existingProfile = (!profileRequestData.overwrite &&
+      readFile<IFileProfile>(
+        path.join(dataPath, getProfileFileName(profileRequestData.id))
+      )) ?? {macros: {}, settings: {}};
     writeFile<IFileProfile>(
       path.join(dataPath, getProfileFileName(profileRequestData.id)),
       {

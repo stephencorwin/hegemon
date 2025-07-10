@@ -32,7 +32,8 @@ export function useAuth() {
      */
     store.registerProfile = async (
       apiKey: string,
-      isPaper: boolean = false
+      isPaper: boolean = false,
+      overwrite: boolean = false
     ) => {
       const url = `${getTradierBaseURL(isPaper)}/user/profile`;
 
@@ -48,6 +49,7 @@ export function useAuth() {
           id: profile.id,
           apiKey,
           isPaper,
+          overwrite,
         },
       });
 
