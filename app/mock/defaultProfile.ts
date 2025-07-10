@@ -12,6 +12,7 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       'SMCI',
       'PLTR',
       'TSLA',
+      'MSFT',
       'AMZN',
       'HOOD',
       'UNH',
