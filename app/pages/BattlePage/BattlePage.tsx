@@ -41,23 +41,22 @@ export function BattlePage() {
       if (order.status === ORDER_STATUS.REJECTED) return acc;
       if (order.status === ORDER_STATUS.FILLED) return acc;
       if (order.status === ORDER_STATUS.EXPIRED) return acc;
+
       acc.push(order);
       return acc;
     },
     [] as IOrder[]
   );
 
-  const relatedPositions = Object.values(account.positions.cache).reduce(
-    (acc, position) => {
-      // filter out unrelated symbols
-      if (showOnlyTargetRelated && !position.symbol.includes(target)) {
-        return acc;
-      }
-      acc.push(position);
-      return acc as IPosition[];
-    },
-    []
-  );
+  const relatedPositions = Object.values(account.positions.cache).reduce<
+    IPosition[]
+  >((acc, position) => {
+    // filter out unrelated symbols
+    if (showOnlyTargetRelated && !position.symbol.includes(target)) return acc;
+
+    acc.push(position);
+    return acc;
+  }, []);
 
   return (
     <Main>
