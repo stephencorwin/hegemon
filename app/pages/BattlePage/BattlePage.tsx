@@ -19,7 +19,7 @@ import {PositionTile} from './PositionTile';
 
 export function BattlePage() {
   const {snapshot} = useHegemon();
-  const {status, profile, market, account} = snapshot;
+  const {status, profile, market, account, logout} = snapshot;
   const {health, mana} = status;
   const macroIds = Object.keys(profile.macros);
   const target = snapshot.market.subscribed.target;
@@ -60,7 +60,7 @@ export function BattlePage() {
 
   return (
     <Main>
-      <LogoutButton onClick={() => snapshot.logout()}>Logout</LogoutButton>
+      <LogoutButton onClick={() => logout()}>Logout</LogoutButton>
       <LimitBreakLeft />
       <MacroBarLeft macroIds={macroIds.slice(0, 5)} />
       <MacroBarRight macroIds={macroIds.slice(5, 10)} />

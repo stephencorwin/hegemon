@@ -13,7 +13,7 @@ export function useAuth() {
 
   useEffect(() => {
     /**
-     * LOGIN
+     * fetchSavedProfiles
      */
     store.fetchSavedProfiles = async () => {
       const {
@@ -117,6 +117,13 @@ export function useAuth() {
       store.status.accountBalancesFetched = false;
       store.status.health = {current: 0, max: 0};
       store.status.mana = {current: 0, max: 0};
+      store.account.balances.total = 0;
+      store.account.balances.available = 0;
+      store.market.subscribed.stocks = [];
+      store.market.subscribed.options = [];
+      store.market.stocks.cache = {};
+      store.market.options.cache = {};
+      store.market.queue.setLimitSell = [];
     };
   }, [store]);
 
