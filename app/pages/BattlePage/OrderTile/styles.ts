@@ -9,4 +9,9 @@ export const Tile = styled.div`
   hr {
     margin: 5px 0;
   }
+
+  button {
+    padding: 4px;
+    width: 100%;
+  }
 `;
