@@ -7,37 +7,37 @@ import {ILink, IOptions, IOrder, OPTION_TYPE, ORDER_SIDE} from './types';
  */
 export function calcOptionsVolumeSentiment(
   chain: IOptions['chain'] = {
-    [OPTION_TYPE.CALL]: {above: [], below: []},
-    [OPTION_TYPE.PUT]: {above: [], below: []},
+    [OPTION_TYPE.CALL]: {all: [], above: [], below: []},
+    [OPTION_TYPE.PUT]: {all: [], above: [], below: []},
   }
 ) {
   // for fairness, we want to make sure we are only using
   // the same number of available tranches in each direction
   const limit = Math.min(
     Math.min(
-      chain[OPTION_TYPE.CALL].above.length,
-      chain[OPTION_TYPE.PUT].above.length
-    ),
-    Math.min(
       chain[OPTION_TYPE.CALL].below.length,
       chain[OPTION_TYPE.PUT].below.length
+    ),
+    Math.min(
+      chain[OPTION_TYPE.CALL].above.length,
+      chain[OPTION_TYPE.PUT].above.length
     )
   );
 
   // not enough data to continue
   if (!limit) return 0;
 
-  function joinLinks(above: ILink[], below: ILink[]) {
-    return [...above.slice(0, limit), ...below.slice(0, limit)];
+  function joinLinks(below: ILink[], above: ILink[]) {
+    return [...below.slice(0, limit), ...above.slice(0, limit)];
   }
 
   const calls = joinLinks(
-    chain[OPTION_TYPE.CALL].above,
-    chain[OPTION_TYPE.CALL].below
+    chain[OPTION_TYPE.CALL].below,
+    chain[OPTION_TYPE.CALL].above
   );
   const puts = joinLinks(
-    chain[OPTION_TYPE.PUT].above,
-    chain[OPTION_TYPE.PUT].below
+    chain[OPTION_TYPE.PUT].below,
+    chain[OPTION_TYPE.PUT].above
   );
 
   const cv = calls.reduce((acc, call) => {

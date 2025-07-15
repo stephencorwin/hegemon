@@ -143,7 +143,7 @@ export function useTradier() {
           // optionsData not available, escape
           if (!optionsData) return acc;
 
-          const link = [...optionsData.below, ...optionsData.above].find(
+          const link = optionsData.all.find(
             (link) => link.optionSymbol === position.symbol
           );
 
@@ -397,7 +397,7 @@ export function useTradier() {
       const stock = store.market.stocks.cache[symbol];
       if (!stock) return;
 
-      const rangeCountLimit = 30;
+      const rangeCountLimit = 15;
       const expiration = store.status.optionsExpiration;
 
       let url = `${BASE_URL}/markets/options/chains`;
@@ -411,9 +411,11 @@ export function useTradier() {
       } = await axios({url, method: 'GET', headers});
 
       const chain = {
-        [OPTION_TYPE.CALL]: {above: [], below: []},
-        [OPTION_TYPE.PUT]: {above: [], below: []},
-      } as {[key in OPTION_TYPE]: {above: ILink[]; below: ILink[]}};
+        [OPTION_TYPE.CALL]: {all: [], above: [], below: []},
+        [OPTION_TYPE.PUT]: {all: [], above: [], below: []},
+      } as {
+        [key in OPTION_TYPE]: {all: ILink[]; above: ILink[]; below: ILink[]};
+      };
 
       sortBy(option, (link) => link.strike).forEach((link) => {
         const {midAsk, buyAsk, sellAsk} = calcPrices(link.bid, link.ask);
@@ -446,6 +448,16 @@ export function useTradier() {
       // between above and below
       chain.call.below.splice(rangeCountLimit, chain.call.below.length);
       chain.put.below.splice(rangeCountLimit, chain.put.below.length);
+      chain.call.above.splice(rangeCountLimit, chain.call.above.length);
+      chain.put.above.splice(rangeCountLimit, chain.put.above.length);
+      chain.call.all = [
+        ...chain.call.below.toReversed(),
+        ...chain.call.above.slice(0, rangeCountLimit),
+      ];
+      chain.put.all = [
+        ...chain.put.below.toReversed(),
+        ...chain.put.above.slice(0, rangeCountLimit),
+      ];
 
       const {midAsk, buyAsk, sellAsk} = calcPrices(stock.bid, stock.ask);
       return {

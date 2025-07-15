@@ -59,10 +59,12 @@ export interface IOptions {
   expiration: string;
   chain: {
     [OPTION_TYPE.CALL]: {
+      all: ILink[];
       above: ILink[];
       below: ILink[];
     };
     [OPTION_TYPE.PUT]: {
+      all: ILink[];
       above: ILink[];
       below: ILink[];
     };
