@@ -424,7 +424,7 @@ export function useTradier() {
         [key in OPTION_TYPE]: {all: ILink[]; above: ILink[]; below: ILink[]};
       };
 
-      sortBy(option, (link) => link.strike).forEach((link) => {
+      sortBy(option, ['strike']).forEach((link) => {
         const {midAsk, buyAsk, sellAsk} = calcPrices(link.bid, link.ask);
 
         const newLink: ILink = {

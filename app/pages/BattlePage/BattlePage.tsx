@@ -16,6 +16,7 @@ import {ResourceGlobe} from './ResourceGlobe';
 import {WatchList} from './WatchList';
 import {OrderTile} from './OrderTile';
 import {PositionTile} from './PositionTile';
+import {sortBy} from 'lodash';
 
 export function BattlePage() {
   const {snapshot} = useHegemon();
@@ -33,26 +34,31 @@ export function BattlePage() {
   const dailySentiment = weeklySentiment - sentimentCache;
 
   const [showOnlyTargetRelated, setShowOnlyTargetRelated] = useState(false);
-  const relatedOrders = Object.values(account.orders.cache).reduce(
-    (acc, order) => {
+  const relatedOrders = sortBy(
+    Object.values(account.orders.cache).reduce((acc, order) => {
       // filter out unrelated symbols
       if (showOnlyTargetRelated && !order.symbol.includes(target)) return acc;
 
       acc.push(order);
       return acc;
-    },
-    [] as IOrder[]
+    }, [] as IOrder[]),
+    ['optionSymbol', 'optionType', 'optionStrike']
   );
 
-  const relatedPositions = Object.values(account.positions.cache).reduce<
-    IPosition[]
-  >((acc, position) => {
-    // filter out unrelated symbols
-    if (showOnlyTargetRelated && !position.symbol.includes(target)) return acc;
+  const relatedPositions = sortBy(
+    Object.values(account.positions.cache).reduce<IPosition[]>(
+      (acc, position) => {
+        // filter out unrelated symbols
+        if (showOnlyTargetRelated && !position.symbol.includes(target))
+          return acc;
 
-    acc.push(position);
-    return acc;
-  }, []);
+        acc.push(position);
+        return acc;
+      },
+      []
+    ),
+    ['optionSymbol', 'optionType', 'optionStrike']
+  );
 
   return (
     <Main>
