@@ -119,6 +119,8 @@ export function useAuth() {
       store.status.mana = {current: 0, max: 0};
       store.account.balances.total = 0;
       store.account.balances.available = 0;
+      store.account.orders.cache = {};
+      store.account.positions.cache = {};
       store.market.subscribed.stocks = [];
       store.market.subscribed.options = [];
       store.market.stocks.cache = {};
