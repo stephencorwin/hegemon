@@ -279,6 +279,10 @@ export interface IHegemonStore {
     macros: {[id: string]: IMacro};
     settings: {
       watchlist: string[];
+      positions: {
+        sellPercentagesReplacePreviousOrders?: boolean;
+        profitGoalsReplacePreviousOrders?: boolean;
+      };
       limitBreak: {
         maxOverride?: boolean;
         current: number;

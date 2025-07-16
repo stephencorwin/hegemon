@@ -13,6 +13,7 @@ import {
   FillValue,
   GoalValue,
 } from './styles';
+import {ORDER_SIDE} from '../../../types';
 
 export interface IPositionTileProps {
   id: number;
@@ -37,11 +38,37 @@ export function PositionTile({id}: IPositionTileProps) {
   const isOption = !!positionData.optionSymbol;
 
   const handleSell =
-    (quantity: number, limit: number = sellAsk) =>
-    () => {
+    (quantity: number, limit: number, replacePreviousOrders: boolean = false) =>
+    async () => {
       if (isOption) {
+        if (replacePreviousOrders) {
+          await Promise.all(
+            Object.values(account.orders.cache).map(async (order) => {
+              if (order.symbol !== symbol) return;
+              if (order.side !== ORDER_SIDE.SELL_TO_CLOSE) return;
+              if (order.optionSymbol !== optionSymbol) return;
+              if (order.optionType !== optionType) return;
+              if (order.optionStrike !== optionStrike) return;
+
+              await account.orders.cancel(order.id);
+            })
+          );
+        }
+
         market.options.sell(symbol, optionSymbol, limit, quantity);
       } else {
+        if (replacePreviousOrders) {
+          await Promise.all(
+            Object.values(account.orders.cache).map(async (order) => {
+              if (order.symbol !== symbol) return;
+              if (order.side !== ORDER_SIDE.SELL) return;
+              if (!!order.optionSymbol) return;
+
+              await account.orders.cancel(order.id);
+            })
+          );
+        }
+
         market.stocks.sell(symbol, limit, quantity);
       }
     };
@@ -95,25 +122,41 @@ export function PositionTile({id}: IPositionTileProps) {
       <SellButtonsWrapper>
         <div>
           <SellButton
-            onClick={handleSell(quantity * 0.1)}
+            onClick={handleSell(
+              quantity * 0.1,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
             title="Attempt to sell 10% of the remaining quantity at the current price."
           >
             -10%
           </SellButton>
           <SellButton
-            onClick={handleSell(quantity * 0.25)}
+            onClick={handleSell(
+              quantity * 0.25,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
             title="Attempt to sell 25% of the remaining quantity at the current price."
           >
             -25%
           </SellButton>
           <SellButton
-            onClick={handleSell(quantity * 0.5)}
+            onClick={handleSell(
+              quantity * 0.5,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
             title="Attempt to sell 50% of the remaining quantity at the current price."
           >
             -50%
           </SellButton>
           <SellButton
-            onClick={handleSell(quantity)}
+            onClick={handleSell(
+              quantity,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
             title="Attempt to sell 100% of the remaining quantity at the current price."
           >
             -100%
@@ -121,25 +164,41 @@ export function PositionTile({id}: IPositionTileProps) {
         </div>
         <div>
           <SellButtonHalf
-            onClick={handleSell(quantity, getGoalValue(0))}
+            onClick={handleSell(
+              quantity,
+              getGoalValue(0),
+              settings.positions.profitGoalsReplacePreviousOrders
+            )}
             title={`Sell ${quantity} at ${formatCurrency(getGoalValue(0))} (${getGoalLabel(0)} profit)`}
           >
             {getGoalLabel(0)}
           </SellButtonHalf>
           <SellButtonHalf
-            onClick={handleSell(quantity, getGoalValue(0.5))}
+            onClick={handleSell(
+              quantity,
+              getGoalValue(0.5),
+              settings.positions.profitGoalsReplacePreviousOrders
+            )}
             title={`Sell ${quantity} at ${formatCurrency(getGoalValue(0.5))} (${getGoalLabel(0.5)} profit)`}
           >
             {getGoalLabel(0.5)}
           </SellButtonHalf>
           <SellButtonHalf
-            onClick={handleSell(quantity, getGoalValue(1))}
+            onClick={handleSell(
+              quantity,
+              getGoalValue(1),
+              settings.positions.profitGoalsReplacePreviousOrders
+            )}
             title={`Sell ${quantity} at ${formatCurrency(getGoalValue(1))} (${getGoalLabel(1)} profit)`}
           >
             {getGoalLabel(1)}
           </SellButtonHalf>
           <SellButtonHalf
-            onClick={handleSell(quantity, getGoalValue(1.5))}
+            onClick={handleSell(
+              quantity,
+              getGoalValue(1.5),
+              settings.positions.profitGoalsReplacePreviousOrders
+            )}
             title={`Sell ${quantity} at ${formatCurrency(getGoalValue(1.5))} (${getGoalLabel(1.5)} profit)`}
           >
             {getGoalLabel(1.5)}

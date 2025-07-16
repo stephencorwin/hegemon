@@ -9,6 +9,7 @@ import {
   ILink,
   DeepWriteable,
   ORDER_SIDE,
+  ORDER_STATUS,
 } from '../types';
 import {calcOptionsVolumeSentiment, calcPrices} from '../math';
 import {formatNumber} from '../formatters';
@@ -201,6 +202,12 @@ export function useTradier() {
       return (
         Array.isArray(orders.order) ? orders.order : [orders.order]
       ).reduce((acc, order) => {
+        // automatically filter out orders that are not actionable
+        if (order.status === ORDER_STATUS.CANCELED) return acc;
+        if (order.status === ORDER_STATUS.REJECTED) return acc;
+        if (order.status === ORDER_STATUS.FILLED) return acc;
+        if (order.status === ORDER_STATUS.EXPIRED) return acc;
+
         let symbol = order.symbol;
         let optionSymbol = order.option_symbol;
         let optionType = null;

@@ -5,6 +5,10 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
   macros: MACROS,
   settings: {
     watchlist: ['GOOGL', 'SPY', 'NVDA', 'AMD', 'SMCI', 'PLTR', 'TSLA', 'UNH'],
+    positions: {
+      sellPercentagesReplacePreviousOrders: true,
+      profitGoalsReplacePreviousOrders: true,
+    },
     thresholds: {
       profit: {
         dailyGoal: 1.15,

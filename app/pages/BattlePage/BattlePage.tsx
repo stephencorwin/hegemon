@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useHegemon} from '../../hooks';
 import {formatCurrency, formatPercent} from '../../formatters';
-import {DeepWriteable, IOrder, IPosition, ORDER_STATUS} from '../../types';
+import {DeepWriteable, IOrder, IPosition} from '../../types';
 import {calcOptionsVolumeSentiment} from '../../math';
 import {
   Main,
@@ -37,10 +37,6 @@ export function BattlePage() {
     (acc, order) => {
       // filter out unrelated symbols
       if (showOnlyTargetRelated && !order.symbol.includes(target)) return acc;
-      if (order.status === ORDER_STATUS.CANCELED) return acc;
-      if (order.status === ORDER_STATUS.REJECTED) return acc;
-      if (order.status === ORDER_STATUS.FILLED) return acc;
-      if (order.status === ORDER_STATUS.EXPIRED) return acc;
 
       acc.push(order);
       return acc;
