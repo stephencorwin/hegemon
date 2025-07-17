@@ -42,3 +42,21 @@ Macros can specify a `limitOffset` and `limitPercent` to further bias in a desir
 | `midAsk`  | `bid` + `range` * 0.5  | Mid-point between the ask and the bid.  |
 | `buyAsk`  | `bid` + `range` * 0.65 | Slightly biased towards the ask price.  |
 | `sellAsk` | `bid` + `range` * 0.35 | Slightly biased towards the bid price.  |
+
+## Roadmap
+- "Settings Page"
+- "Reinforce" an existing position
+- Macro Automation for submitting a Limit Sell once a macro resolves.
+- Design and update the Order Tiles
+- Design and update the Target nameplate (at the top)
+- "Combat Log" which acts as a readable log of actions that have been taken.
+  - Example: Order placed/canceled/fulfilled
+- "Alert Log" which events can be sent to in order to highlight key insights.
+  - Example: dramatic changes in the daily sentiment
+- VIX fear indicator
+- Day/Night Cycle
+- Macro Builder Page
+- Allow the user to slot which macros are active
+- Stance selector (Bull, Bear, Crab)
+- Design and update the WatchList Tiles
+- "Order Ticket Modal" as an option for when clicking a macro. Basically, the macro will populate the Order Ticket form and the user will have an opportunity to make adjustments before submission. Consider either a modifier key or a settings toggle to trigger this behavior instead of immediate order submission.
