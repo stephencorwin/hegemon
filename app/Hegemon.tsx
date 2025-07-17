@@ -10,6 +10,7 @@ import {
   useAuth,
   usePersist,
   useIsAuthenticated,
+  useOnStartup,
 } from './hooks';
 import {GlobalStyles} from './styles';
 import {theme} from './theme.styles';
@@ -29,6 +30,7 @@ function HegemonInner() {
   useAuth();
   usePersist();
   useTradier();
+  useOnStartup();
 
   return (
     <>

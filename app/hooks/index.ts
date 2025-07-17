@@ -5,3 +5,4 @@ export * from './useIsAuthenticated';
 export * from './usePersist';
 export * from './useTradier';
 export * from './useDataAutoPoll';
+export * from './useOnStartup';
