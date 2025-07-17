@@ -180,22 +180,32 @@ export function connectElectron(app, win) {
 
   server.get('/data', (req, res) => {
     const id = req.query.id;
-    if (!id) return;
 
-    const profile = readFile<IFileProfile>(
-      path.join(dataPath, getProfileFileName(id))
-    );
+    const response: {
+      profile?: IFileProfile;
+      weeklySentiment?: IFileWeeklySentiment;
+    } = {};
+
+    if (id) {
+      const profile = readFile<IFileProfile>(
+        path.join(dataPath, getProfileFileName(id))
+      );
+      response.profile = profile;
+    }
 
     const weeklySentiment = readFile<IFileWeeklySentiment>(
       path.join(dataPath, 'weekly-sentiment.json')
     );
+    response.weeklySentiment = weeklySentiment;
 
-    res.send(JSON.stringify({profile, weeklySentiment}));
+    res.send(JSON.stringify(response));
     res.end();
   });
 
   server.post('/data', (req, res) => {
     const profileRequestData: IFileProfile = req.body?.profile;
+    const weeklySentimentData = req.body?.weeklySentiment;
+
     if (profileRequestData) {
       // persist profile data
       writeFile<IFileProfile>(
@@ -208,9 +218,14 @@ export function connectElectron(app, win) {
       );
     }
 
-    if (req.body?.weeklySentiment) {
+    if (weeklySentimentData) {
+      const weeklySentimentHistory =
+        readFile<IFileProfiles>(path.join(dataPath, 'weekly-sentiment.json')) ??
+        {};
+
       writeFile(path.join(dataPath, 'weekly-sentiment.json'), {
-        ['2025-06-06']: req.body.weeklySentiment,
+        ...req.body.weeklySentiment,
+        ...weeklySentimentHistory,
       });
     }
 

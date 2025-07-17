@@ -566,7 +566,9 @@ export function useTradier() {
     /**
      * OPTIONS -> SNAPSHOT_SENTIMENT
      */
-    store.market.options.snapshotSentiment = async () => {
+    store.market.options.snapshotSentiment = () => {
+      if (!store.profile?.settings?.watchlist) return {};
+
       const sentimentSnapshot = store.profile.settings.watchlist.reduce(
         (acc, symbol) => {
           const optionsData = store.market.options.cache[symbol];
@@ -579,11 +581,7 @@ export function useTradier() {
         {}
       );
 
-      store.market.options.sentimentCache = sentimentSnapshot;
-      console.log(
-        '[EXPORT] Weekly Sentiment Snapshot: ',
-        JSON.stringify(sentimentSnapshot)
-      );
+      return sentimentSnapshot;
     };
   }, [store, id, accountId, headers, BASE_URL]);
 }

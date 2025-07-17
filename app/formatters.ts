@@ -1,3 +1,5 @@
+import {format} from 'date-fns';
+
 /**
  * Format to a string version of a percent which will show only
  * a minimal amount of precision as well as include a leading symbol
@@ -66,4 +68,12 @@ export function formatCurrency(value: number, showDirection = false): string {
   let formattedValue = value.toFixed(2);
   if (showDirection) formattedValue = `${directionSymbol}${formattedValue}`;
   return formattedValue;
+}
+
+/**
+ * Formats the date as it is used by Tradier.
+ * yyyy-MM-dd
+ */
+export function formatDate(date: string | number | Date) {
+  return format(date, 'yyyy-MM-dd');
 }

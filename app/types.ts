@@ -368,7 +368,8 @@ export interface IHegemonStore {
     options: {
       cache: {[symbol: string]: IOptions};
       sentimentCache: {[symbol: string]: number};
-      snapshotSentiment: () => Promise<void>;
+      sentimentCacheLastUpdatedDate?: string;
+      snapshotSentiment: () => {[symbol: string]: number};
       fetch: (symbol: string) => Promise<IOptions>;
       buy: (
         symbol: string,

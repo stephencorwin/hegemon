@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 import {proxy} from 'valtio';
 import type {IHegemonStore} from '../types';
-import {SENTIMENT_CACHE} from '../mock/sentimentCache';
 
 export function useCreateStore(overrides?: IHegemonStore) {
   const ref = useRef<IHegemonStore>(null);
@@ -101,7 +100,7 @@ export function createStore(overrides?: {
       },
       options: {
         cache: {},
-        sentimentCache: SENTIMENT_CACHE,
+        sentimentCache: {},
         //@ts-ignore
         snapshotSentiment: defaultHandler('[market.options] snapshotSentiment'),
         //@ts-ignore
