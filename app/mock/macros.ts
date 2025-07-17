@@ -20,7 +20,7 @@ export const MACRO_FLARE: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: -4,
+      optionTranche: -2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -40,7 +40,7 @@ export const MACRO_FIREBALL: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: -3,
+      optionTranche: -1,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -60,7 +60,7 @@ export const MACRO_EXPLOSION: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: -2,
+      optionTranche: +1,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -80,7 +80,7 @@ export const MACRO_FIRE_TICKET: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: +1,
+      optionTranche: +2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -101,7 +101,7 @@ export const MACRO_FIRE_STORM: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: -3,
+      optionTranche: -2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -111,7 +111,7 @@ export const MACRO_FIRE_STORM: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: +1,
+      optionTranche: +2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -131,7 +131,7 @@ export const MACRO_FROST_BOLT: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: +4,
+      optionTranche: +2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -151,7 +151,7 @@ export const MACRO_ICE_LANCE: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: +3,
+      optionTranche: +1,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -171,7 +171,7 @@ export const MACRO_BLACK_HOLE: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: +2,
+      optionTranche: -1,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -191,7 +191,7 @@ export const MACRO_ICE_TICKET: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: -1,
+      optionTranche: -2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -212,7 +212,7 @@ export const MACRO_BLIZZARD: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: +3,
+      optionTranche: +2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
@@ -222,7 +222,7 @@ export const MACRO_BLIZZARD: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: -1,
+      optionTranche: -2,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.1},
