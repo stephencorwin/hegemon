@@ -20,12 +20,12 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       },
       sentiment: {
         daily: {
-          changePercentIsHighlyPositive: 0.15,
-          changePercentIsHighlyNegative: -0.15,
+          changePercentIsHighlyPositive: 0.1,
+          changePercentIsHighlyNegative: -0.1,
         },
         weekly: {
-          changePercentIsHighlyPositive: 0.15,
-          changePercentIsHighlyNegative: -0.15,
+          changePercentIsHighlyPositive: 0.25,
+          changePercentIsHighlyNegative: -0.25,
         },
       },
     },
