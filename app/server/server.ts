@@ -224,8 +224,8 @@ export function connectElectron(app, win) {
         {};
 
       writeFile(path.join(dataPath, 'weekly-sentiment.json'), {
-        ...req.body.weeklySentiment,
         ...weeklySentimentHistory,
+        ...req.body.weeklySentiment,
       });
     }
 

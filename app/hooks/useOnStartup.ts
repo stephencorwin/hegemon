@@ -28,7 +28,7 @@ export function useOnStartup() {
   }, [store]);
 
   /**
-   * Daily Sentiment Cache
+   * Weekly Sentiment Cache
    */
   useEffect(() => {
     (async () => {
@@ -40,11 +40,17 @@ export function useOnStartup() {
         headers: HEADERS,
       });
 
-      const yesterday = formatDate(subDays(new Date(), 1));
+      const now = new Date();
+      const today = formatDate(now);
+      const yesterday = formatDate(subDays(now, 1));
       if (weeklySentiment) {
+        const todaysCache = weeklySentiment[today];
         const yesterdaysCache = weeklySentiment[yesterday];
 
-        if (yesterdaysCache) {
+        if (todaysCache) {
+          store.market.options.sentimentCache = todaysCache;
+          store.market.options.sentimentCacheLastUpdatedDate = today;
+        } else if (yesterdaysCache) {
           store.market.options.sentimentCache = yesterdaysCache;
           store.market.options.sentimentCacheLastUpdatedDate = yesterday;
         }
@@ -70,7 +76,6 @@ export function useOnStartup() {
 
       const now = new Date();
       const today = formatDate(now);
-      const yesterday = formatDate(subDays(now, 1));
       const marketLapsedSinceYesterday = isAfter(
         now,
         setHours(startOfYesterday(), 16)
@@ -86,7 +91,7 @@ export function useOnStartup() {
           headers: HEADERS,
           data: {
             weeklySentiment: {
-              [yesterday]: sentimentSnapshot,
+              [today]: sentimentSnapshot,
             },
           },
         });
