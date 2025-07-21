@@ -64,3 +64,31 @@ Macros can specify a `limitOffset` and `limitPercent` to further bias in a desir
 - Stance selector (Bull, Bear, Crab)
 - Design and update the WatchList Tiles
 - "Order Ticket Modal" as an option for when clicking a macro. Basically, the macro will populate the Order Ticket form and the user will have an opportunity to make adjustments before submission. Consider either a modifier key or a settings toggle to trigger this behavior instead of immediate order submission.
+
+## Manual Workarounds
+
+### Setting a Profile Nickname
+- Open your `profiles.json` and add the field `"nickname": "Clever Nickname"` to the desired profile
+
+### Black screen after logging in
+The local data structure might be obsolete with what is expected.
+- On the login page, click the "Reset" button next to each account.
+  - **Note:** This will reset any configured macros or settings back to default.
+  - Be sure to backup any macro data that you wish to reconfigure afterwards.
+
+If that doesn't work then:
+- Navigate to your `AppData/Hegemon/data` directory
+- Delete all profile json files
+- On the login page, register the accounts again
+
+### Watchlist
+- Open your `profile_XXX.json` file and update the `watchlist` field with your desired symbols.
+- **Note:** Invalid symbols will result in a black screen
+
+### Macros
+You are provided with a few basic macros by default. If you wish to update these:
+- Open your `profile_XXX.json` file and update the `macros` field.
+- Each macro can execute any number of "legs".
+- Ensure that you follow the same syntax provided by the default macros.
+- Basic updates should be possible at this time
+- **Note:** There will be a Macro Builder in the future to help ease this process.
