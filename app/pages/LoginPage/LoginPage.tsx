@@ -46,6 +46,7 @@ export function LoginPage() {
             id={savedProfile.id}
             apiKey={savedProfile.apiKey}
             isPaper={savedProfile.isPaper}
+            nickname={savedProfile.nickname}
           />
         ))}
       </ProfileTileWrapper>

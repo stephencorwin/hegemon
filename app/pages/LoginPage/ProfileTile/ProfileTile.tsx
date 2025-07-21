@@ -13,9 +13,15 @@ export interface IProfileTileProps {
   id: string;
   apiKey: string;
   isPaper?: boolean;
+  nickname?: string;
 }
 
-export function ProfileTile({id, apiKey, isPaper}: IProfileTileProps) {
+export function ProfileTile({
+  id,
+  apiKey,
+  isPaper,
+  nickname,
+}: IProfileTileProps) {
   const {snapshot} = useHegemon();
   const navigate = useNavigate();
 
@@ -26,7 +32,7 @@ export function ProfileTile({id, apiKey, isPaper}: IProfileTileProps) {
 
   return (
     <Wrapper>
-      <IdWrapper>{id}</IdWrapper>
+      <IdWrapper>{nickname ? nickname : id}</IdWrapper>
       <ButtonsWrapper>
         <div>
           <Button disabled>Set Default </Button>

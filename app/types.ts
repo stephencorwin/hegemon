@@ -400,6 +400,7 @@ export interface ISingleFileProfile {
   id: string;
   apiKey: string;
   isPaper?: boolean;
+  nickname?: string;
 }
 
 export type IFileProfiles = ISingleFileProfile[];
