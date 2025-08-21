@@ -94,6 +94,11 @@ export const SellButtonsWrapper = styled.div`
   > div {
     display: flex;
     gap: ${({theme}) => theme.spacings.xs};
+    margin-top: ${({theme}) => theme.spacings.xs};
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 `;
 
@@ -110,13 +115,11 @@ export const SellButton = styled.button`
 `;
 
 export const SellButtonHalf = styled(SellButton)`
-  margin-top: ${({theme}) => theme.spacings.xs};
   height: 30px;
   width: 50%;
 `;
 
 export const SellButtonFull = styled(SellButton)`
-  margin-top: ${({theme}) => theme.spacings.xs};
   height: 30px;
   width: 100%;
 `;

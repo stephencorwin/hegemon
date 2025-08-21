@@ -6,7 +6,7 @@ import {
   Tile,
   StatusWrapper,
   StatusTextWrapper,
-  SellButton,
+  SellButtonFull,
   SellButtonHalf,
   SellButtonsWrapper,
   EmptyValue,
@@ -121,58 +121,6 @@ export function PositionTile({id}: IPositionTileProps) {
 
       <SellButtonsWrapper>
         <div>
-          <SellButton
-            onClick={handleSell(
-              quantity * 0.1,
-              sellAsk,
-              settings.positions.sellPercentagesReplacePreviousOrders
-            )}
-            title="Attempt to sell 10% of the remaining quantity at the current price."
-          >
-            -10%
-          </SellButton>
-          <SellButton
-            onClick={handleSell(
-              quantity * 0.25,
-              sellAsk,
-              settings.positions.sellPercentagesReplacePreviousOrders
-            )}
-            title="Attempt to sell 25% of the remaining quantity at the current price."
-          >
-            -25%
-          </SellButton>
-          <SellButton
-            onClick={handleSell(
-              quantity * 0.5,
-              sellAsk,
-              settings.positions.sellPercentagesReplacePreviousOrders
-            )}
-            title="Attempt to sell 50% of the remaining quantity at the current price."
-          >
-            -50%
-          </SellButton>
-          <SellButton
-            onClick={handleSell(
-              quantity,
-              sellAsk,
-              settings.positions.sellPercentagesReplacePreviousOrders
-            )}
-            title="Attempt to sell 100% of the remaining quantity at the current price."
-          >
-            -100%
-          </SellButton>
-        </div>
-        <div>
-          <SellButtonHalf
-            onClick={handleSell(
-              quantity,
-              getGoalValue(0),
-              settings.positions.profitGoalsReplacePreviousOrders
-            )}
-            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(0))} (${getGoalLabel(0)} profit)`}
-          >
-            {getGoalLabel(0)}
-          </SellButtonHalf>
           <SellButtonHalf
             onClick={handleSell(
               quantity,
@@ -203,6 +151,58 @@ export function PositionTile({id}: IPositionTileProps) {
           >
             {getGoalLabel(1.5)}
           </SellButtonHalf>
+          <SellButtonHalf
+            onClick={handleSell(
+              quantity,
+              getGoalValue(2),
+              settings.positions.profitGoalsReplacePreviousOrders
+            )}
+            title={`Sell ${quantity} at ${formatCurrency(getGoalValue(2))} (${getGoalLabel(2)} profit)`}
+          >
+            {getGoalLabel(2)}
+          </SellButtonHalf>
+        </div>
+        <div>
+          {/* <SellButton
+            onClick={handleSell(
+              quantity * 0.1,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
+            title="Attempt to sell 10% of the remaining quantity at the current price."
+          >
+            -10%
+          </SellButton>
+          <SellButton
+            onClick={handleSell(
+              quantity * 0.25,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
+            title="Attempt to sell 25% of the remaining quantity at the current price."
+          >
+            -25%
+          </SellButton>
+          <SellButton
+            onClick={handleSell(
+              quantity * 0.5,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
+            title="Attempt to sell 50% of the remaining quantity at the current price."
+          >
+            -50%
+          </SellButton> */}
+          <SellButtonFull
+            onClick={handleSell(
+              quantity,
+              sellAsk,
+              settings.positions.sellPercentagesReplacePreviousOrders
+            )}
+            title="Attempt to sell 100% of the remaining quantity at the current price."
+          >
+            Liquidate
+          </SellButtonFull>
         </div>
       </SellButtonsWrapper>
     </Tile>
