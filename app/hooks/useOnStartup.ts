@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {
   isAfter,
+  isFriday,
   nextFriday,
   setHours,
   startOfYesterday,
@@ -20,7 +21,14 @@ export function useOnStartup() {
    * Options Expiration Date
    */
   useEffect(() => {
-    store.status.optionsExpiration = formatDate(nextFriday(new Date()));
+    const now = new Date();
+    const nextFridayDate = nextFriday(now);
+
+    // in order to support 0 day DTE, but a default of the next Friday,
+    // we need to check to see if today is Friday and adjust accordingly
+    store.status.optionsExpiration = formatDate(
+      isFriday(now) ? now : nextFridayDate
+    );
 
     console.info(
       `[Hegemon] Options expiration date was automatically set to ${store.status.optionsExpiration}`
@@ -41,18 +49,19 @@ export function useOnStartup() {
       });
 
       const now = new Date();
-      const today = formatDate(now);
-      const yesterday = formatDate(subDays(now, 1));
+      const todayFormatted = formatDate(now);
+      const yesterdayFormatted = formatDate(subDays(now, 1));
       if (weeklySentiment) {
-        const todaysCache = weeklySentiment[today];
-        const yesterdaysCache = weeklySentiment[yesterday];
+        const todaysCache = weeklySentiment[todayFormatted];
+        const yesterdaysCache = weeklySentiment[yesterdayFormatted];
 
         if (todaysCache) {
           store.market.options.sentimentCache = todaysCache;
-          store.market.options.sentimentCacheLastUpdatedDate = today;
+          store.market.options.sentimentCacheLastUpdatedDate = todayFormatted;
         } else if (yesterdaysCache) {
           store.market.options.sentimentCache = yesterdaysCache;
-          store.market.options.sentimentCacheLastUpdatedDate = yesterday;
+          store.market.options.sentimentCacheLastUpdatedDate =
+            yesterdayFormatted;
         }
       }
     })();
@@ -75,7 +84,7 @@ export function useOnStartup() {
       }
 
       const now = new Date();
-      const today = formatDate(now);
+      const todayFormatted = formatDate(now);
       const marketLapsedSinceYesterday = isAfter(
         now,
         setHours(startOfYesterday(), 16)
@@ -83,7 +92,7 @@ export function useOnStartup() {
 
       if (
         marketLapsedSinceYesterday &&
-        store.market.options.sentimentCacheLastUpdatedDate !== today
+        store.market.options.sentimentCacheLastUpdatedDate !== todayFormatted
       ) {
         await axios({
           url: '/data',
@@ -91,11 +100,11 @@ export function useOnStartup() {
           headers: HEADERS,
           data: {
             weeklySentiment: {
-              [today]: sentimentSnapshot,
+              [todayFormatted]: sentimentSnapshot,
             },
           },
         });
-        store.market.options.sentimentCacheLastUpdatedDate = today;
+        store.market.options.sentimentCacheLastUpdatedDate = todayFormatted;
         store.market.options.sentimentCache = sentimentSnapshot;
       }
     }, 1000);
