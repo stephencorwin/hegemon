@@ -5,16 +5,18 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
   macros: MACROS,
   settings: {
     watchlist: [
-      'GOOGL',
+      'PLTR',
       'SPY',
       'NVDA',
-      'PLTR',
       'AMD',
-      'SMCI',
-      'UNH',
+      'HOOD',
       'TSLA',
+      'HIMS',
+      'UNH',
       'AMZN',
       'MSFT',
+      'GOOGL',
+      'AAPL',
     ],
     positions: {
       sellPercentagesReplacePreviousOrders: true,

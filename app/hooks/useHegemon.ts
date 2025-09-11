@@ -5,7 +5,7 @@ import {StoreContext} from './useCreateStore';
 export function useHegemon() {
   const store = useContext(StoreContext);
   if (!store) {
-    throw new Error('DollhouseViewer store was not initialized before access.');
+    throw new Error('Hegemon store was not initialized before access.');
   }
 
   // create a snapshot of the proxy-state which can be used to trigger rerenders
