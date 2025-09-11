@@ -343,7 +343,7 @@ export function useTradier() {
           side: ORDER_SIDE.BUY,
           quantity: Math.floor(quantity),
           type: 'limit',
-          duration: 'day',
+          duration: 'gtc',
           price: formatNumber(limit),
         },
       });
@@ -381,7 +381,7 @@ export function useTradier() {
           side: ORDER_SIDE.SELL,
           quantity: Math.floor(quantity),
           type: 'limit',
-          duration: 'day',
+          duration: 'gtc',
           price: formatNumber(limit),
         },
       });
@@ -503,7 +503,7 @@ export function useTradier() {
           side: ORDER_SIDE.BUY_TO_OPEN,
           quantity: Math.floor(quantity),
           type: 'limit',
-          duration: 'day',
+          duration: 'gtc',
           price: formatNumber(limit),
         },
       });
@@ -547,7 +547,7 @@ export function useTradier() {
           side: ORDER_SIDE.SELL_TO_CLOSE,
           quantity: Math.floor(quantity),
           type: 'limit',
-          duration: 'day',
+          duration: 'gtc',
           price: formatNumber(limit),
         },
       });
