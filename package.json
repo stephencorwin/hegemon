@@ -27,7 +27,6 @@
     ]
   },
   "scripts": {
-    "postinstall": ".\\node_modules\\.bin\\electron-rebuild.cmd",
     "start": "npm run start:app",
     "start:app": "cross-env NODE_ENV=development webpack-cli -w --config .webpack/app.js",
     "build": "npm run build:app",
@@ -56,6 +55,7 @@
     "events": "^3.3.0",
     "express": "^5.1.0",
     "lodash": "^4.17.21",
+    "nyse-holidays": "^1.2.0",
     "polished": "^4.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

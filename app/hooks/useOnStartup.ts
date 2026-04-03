@@ -11,29 +11,44 @@ import axios from 'axios';
 import {isEmpty} from 'lodash';
 import {useHegemon} from './useHegemon';
 import {formatDate} from '../formatters';
+import {isHoliday} from 'nyse-holidays';
 
 const HEADERS = {['Content-Type']: 'application/json'};
 
 export function useOnStartup() {
-  const {store} = useHegemon();
-
+  const {store, snapshot} = useHegemon();
+  const {
+    status: {allowZeroDTE},
+  } = snapshot;
   /**
    * Options Expiration Date
    */
   useEffect(() => {
     const now = new Date();
-    const nextFridayDate = nextFriday(now);
+
+    let nextFridayDate = nextFriday(now);
 
     // in order to support 0 day DTE, but a default of the next Friday,
     // we need to check to see if today is Friday and adjust accordingly
-    store.status.optionsExpiration = formatDate(
-      isFriday(now) ? now : nextFridayDate
-    );
+    if (allowZeroDTE && isFriday(now)) {
+      nextFridayDate = now;
+    }
+
+    // account for market holidays by skipping to the next Friday in a loop until a non-holiday is found
+    while (isHoliday(nextFridayDate)) {
+      console.info(
+        `[Hegemon] Options expiration date candidate ${formatDate(nextFridayDate)} was skipped due to it being a market holiday`
+      );
+      nextFridayDate = nextFriday(nextFridayDate);
+    }
+
+    // update the optionsExpiration with a formatted date now that an acceptable one has been found
+    store.status.optionsExpiration = formatDate(nextFridayDate);
 
     console.info(
       `[Hegemon] Options expiration date was automatically set to ${store.status.optionsExpiration}`
     );
-  }, [store]);
+  }, [allowZeroDTE, store]);
 
   /**
    * Weekly Sentiment Cache

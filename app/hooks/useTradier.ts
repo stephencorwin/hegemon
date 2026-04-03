@@ -412,10 +412,20 @@ export function useTradier() {
       url += `&expiration=${expiration}`;
 
       const {
-        data: {
-          options: {option},
-        },
+        data: {options},
       } = await axios({url, method: 'GET', headers});
+
+      // expiration date is likely invalid resulting in a "null" options return
+      // escape early and set the new expiration to one week from the previous expiration
+      if (options === null) {
+        console.info(
+          `[Hegemon] Options expiration date failed likely due to a date where the market is closed.`
+        );
+
+        return null;
+      }
+
+      const {option} = options;
 
       const chain = {
         [OPTION_TYPE.CALL]: {all: [], above: [], below: []},
