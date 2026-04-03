@@ -21,7 +21,7 @@
     "skipLibCheck": true,
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["react/next", "react-dom/next"],
+    "types": ["react", "react-dom"],
     "typeRoots": [".types", "node_modules/@types"],
     "baseUrl": "."
   },
