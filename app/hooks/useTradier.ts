@@ -273,11 +273,11 @@ export function useTradier() {
         data: {order},
       } = await axios({url, method: 'DELETE', headers});
 
-      // no order found
-      if (!order) return;
-
       // request an update right away now that the order has been submitted
       await refreshOrders();
+
+      // no order found
+      if (!order) return;
     };
 
     /**
