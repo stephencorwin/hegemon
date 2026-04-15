@@ -20,9 +20,9 @@ Tradier custom client with a strategy builder, macros, and algorithmic execution
 - Generate an API key for both accounts
 - Download the latest stable release from the [releases page in this repository](https://github.com/stephencorwin/hegemon/releases/latest)
 - Register both accounts using their respective API Keys flagging "Paper Trading" for the paper/sandbox account.
-- *(Optional)* Tradier has a `$0.40` fee per options contract traded. This fee can be reduced to a maximum of `$35` a month in most cases by using their premium plan. **Paper trading does not incur any fees.**  
+- *(Optional)* Tradier has a `$0.40` fee per options contract traded. This fee can be reduced to a maximum of `$10` a month in most cases by using their pro plan. **Paper trading does not incur any fees.**  
 I am not sponsored, but would recommend doing cost analysis on which plan would be cheaper based on expected usage.
-  - **Example:** 4 days a week (`16-20 days a month`) on an average of 3 options opened and closed in the same day (`6 contracts x 0.40`) would be `$38.40` in monthly fees. In this case, `$3.40` would have been saved by using the premium plan.
+  - **Example:** 4 days a week (`16-20 days a month`) on an average of 3 options opened and closed in the same day (`6 contracts x 0.40`) would be `$38.40` in monthly fees. In this case, `$28.40` would have been saved by using the pro plan since it only costs `$10` a month.
 
 ## Why Tradier and not...?
 
