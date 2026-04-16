@@ -47,6 +47,7 @@ export interface ILink {
   midAsk: number;
   buyAsk: number;
   sellAsk: number;
+  liquidateAsk: number;
   volume: number;
   openInterest: number;
 }
@@ -97,6 +98,7 @@ export interface IStock {
   midAsk: number;
   buyAsk: number;
   sellAsk: number;
+  liquidateAsk: number;
   change: number;
   changePercentage: number;
   volume: number;
@@ -117,6 +119,7 @@ export interface IPosition {
   midAsk?: number;
   buyAsk?: number;
   sellAsk?: number;
+  liquidateAsk: number;
   price: number;
   costBasis: number;
   change?: number;
