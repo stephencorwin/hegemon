@@ -91,10 +91,10 @@ export function BattlePage() {
               ASK: {formatCurrency(stocksData?.ask)}
             </span>
             <span style={{marginLeft: 40}}>
-              WS: {formatPercent(weeklySentiment)}
+              WS: {formatPercent(weeklySentiment, 0)}
             </span>
             <span style={{marginLeft: 40}}>
-              DS: {formatPercent(dailySentiment)}
+              DS: {formatPercent(dailySentiment, 0)}
             </span>
           </h1>
 

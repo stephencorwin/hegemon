@@ -35,6 +35,21 @@ export function formatNumber(value: number, precision: number = 2): number {
   return +value.toFixed(precision);
 }
 
+export function formatNumberCompact(
+  value: number,
+  precision: number = 1
+): string {
+  if (value === undefined) return;
+
+  const formatter = new Intl.NumberFormat('en', {
+    notation: 'compact',
+    compactDisplay: 'short',
+    maximumFractionDigits: precision, // Optional: sets decimal precision
+  });
+
+  return formatter.format(value);
+}
+
 /**
  * Format to a string version of a float which will limit the decimals
  *
@@ -46,7 +61,10 @@ export function formatNumberAsString(
   precision: number = 2,
   showDirection: boolean = true
 ): string {
-  let formattedValue = `${formatNumber(value, precision)}`;
+  let formattedValue =
+    value < 5000
+      ? `${formatNumber(value, precision)}`
+      : formatNumberCompact(value);
   const directionSymbol = value >= 0 ? '+' : '';
   if (showDirection) formattedValue = `${directionSymbol}${formattedValue}`;
   return formattedValue;
@@ -65,7 +83,9 @@ export function formatNumberAsString(
 export function formatCurrency(value: number, showDirection = false): string {
   if (value === undefined) return;
   const directionSymbol = value >= 0 ? '+' : '';
-  let formattedValue = value.toFixed(2);
+
+  let formattedValue =
+    value < 5000 ? value.toFixed(2) : formatNumberCompact(value);
   if (showDirection) formattedValue = `${directionSymbol}${formattedValue}`;
   return formattedValue;
 }
