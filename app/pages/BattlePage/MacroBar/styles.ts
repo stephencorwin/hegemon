@@ -33,6 +33,10 @@ export const Cost = styled.div`
   font-weight: ${({theme}) => theme.fontWeights.bold};
   font-size: ${({theme}) => theme.fontSizes.lg};
   z-index: 1;
+
+  &.smaller-font {
+    font-size: ${({theme}) => theme.fontSizes.md};
+  }
 `;
 
 export const TrancheCirclesWrapper = styled.div`

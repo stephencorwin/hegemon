@@ -9,6 +9,7 @@ import {
   HealthFill,
   HealthLabel,
 } from './styles';
+import {formatNumberAsString} from '../../../formatters';
 
 export interface IResourceGlobeProps {
   health: {
@@ -38,7 +39,9 @@ export function ResourceGlobe({health, mana}: IResourceGlobeProps) {
   return (
     <StyledGlobe>
       {!!health.max && (
-        <HealthLabel>{Math.floor(health.current).toLocaleString()}</HealthLabel>
+        <HealthLabel>
+          {formatNumberAsString(Math.floor(health.current), null, false)}
+        </HealthLabel>
       )}
       <HealthFill
         style={{
@@ -49,7 +52,11 @@ export function ResourceGlobe({health, mana}: IResourceGlobeProps) {
       {!!mana.max && (
         <ManaBarWrapper>
           <ManaBarLabel>
-            {Math.floor(Math.max(0, mana.current)).toLocaleString()}
+            {formatNumberAsString(
+              Math.floor(Math.max(0, mana.current)),
+              null,
+              false
+            )}
           </ManaBarLabel>
           <ManaBar />
           <ManaBarFill

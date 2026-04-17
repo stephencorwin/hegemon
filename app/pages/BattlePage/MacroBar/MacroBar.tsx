@@ -118,8 +118,12 @@ export function MacroBar({style, className, macroIds = []}: IMacroBarProps) {
             disabled={disabled}
             {...(!disabled && {onClick: handleBuy(macroHydrated)})}
           >
-            <Cost>
-              {disabled ? 'N/A' : macroHydrated.limit.toLocaleString()}
+            <Cost
+              className={clsx({'smaller-font': macroHydrated.limit >= 1000})}
+            >
+              {disabled
+                ? 'N/A'
+                : formatNumberAsString(macroHydrated.limit, null, false)}
             </Cost>
             <TrancheCirclesWrapper>
               {macroHydrated.legs.map(
