@@ -1,11 +1,11 @@
 import {useEffect} from 'react';
 import {
   isAfter,
-  isFriday,
   nextFriday,
   setHours,
   startOfYesterday,
   subDays,
+  differenceInDays,
 } from 'date-fns';
 import axios from 'axios';
 import {isEmpty} from 'lodash';
@@ -18,7 +18,7 @@ const HEADERS = {['Content-Type']: 'application/json'};
 export function useOnStartup() {
   const {store, snapshot} = useHegemon();
   const {
-    status: {allowZeroDTE},
+    status: {allowedMinDTE},
   } = snapshot;
   /**
    * Options Expiration Date
@@ -28,10 +28,12 @@ export function useOnStartup() {
 
     let nextFridayDate = nextFriday(now);
 
-    // in order to support 0 day DTE, but a default of the next Friday,
-    // we need to check to see if today is Friday and adjust accordingly
-    if (allowZeroDTE && isFriday(now)) {
-      nextFridayDate = now;
+    while (differenceInDays(nextFridayDate, now) < allowedMinDTE) {
+      console.info(
+        `[Hegemon] Options expiration date candidate ${formatDate(nextFridayDate)} was skipped due to it being less than ${allowedMinDTE} DTE`
+      );
+
+      nextFridayDate = nextFriday(nextFridayDate);
     }
 
     // account for market holidays by skipping to the next Friday in a loop until a non-holiday is found
@@ -48,7 +50,7 @@ export function useOnStartup() {
     console.info(
       `[Hegemon] Options expiration date was automatically set to ${store.status.optionsExpiration}`
     );
-  }, [allowZeroDTE, store]);
+  }, [allowedMinDTE, store]);
 
   /**
    * Weekly Sentiment Cache

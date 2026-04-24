@@ -259,10 +259,8 @@ export interface IHegemonStore {
     // as a non-persisted option
     optionsExpiration: string;
 
-    // ⚠️ 0 DTE options are dangerous and should be treated with caution.
-    // While I want to support this concept programmatically, I am disabling it
-    // by default for now until I provide a persistant options toggle for it.
-    allowZeroDTE: boolean;
+    // ⚠️ Small DTE options are dangerous and should be treated with caution.
+    allowedMinDTE: number;
   };
   registerProfile: (
     apiKey: string,

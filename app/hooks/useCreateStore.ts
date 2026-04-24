@@ -44,7 +44,7 @@ export function createStore(overrides?: {
         max: 0,
       },
       optionsExpiration: null,
-      allowZeroDTE: false,
+      allowedMinDTE: 3,
     },
     //@ts-ignore
     registerProfile: defaultHandler('[registerProfile] registerProfile'),
