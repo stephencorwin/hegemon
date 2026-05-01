@@ -44,8 +44,8 @@ Macros can specify a `limitOffset` and `limitPercent` to further bias in a desir
 | :------------- | :--------------------- | :-------------------------------------- |
 | `range`        | `ask` - `bid`          | Difference between the ask and the bid. |
 | `midAsk`       | `bid` + `range` * 0.50 | Mid-point between the ask and the bid.  |
-| `buyAsk`       | `bid` + `range` * 0.65 | Slightly biased towards the ask price.  |
-| `sellAsk`      | `bid` + `range` * 0.35 | Slightly biased towards the bid price.  |
+| `buyAsk`       | `bid` + `range` * 0.60 | Slightly biased towards the ask price.  |
+| `sellAsk`      | `bid` + `range` * 0.40 | Slightly biased towards the bid price.  |
 | `liquidateAsk` | `bid` + `range` * 0.10 | Heavily biased towards the bid price.   |
 
 ## Roadmap
