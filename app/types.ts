@@ -258,9 +258,6 @@ export interface IHegemonStore {
     // but I think this is probably better
     // as a non-persisted option
     optionsExpiration: string;
-
-    // ⚠️ Small DTE options are dangerous and should be treated with caution.
-    allowedMinDTE: number;
   };
   registerProfile: (
     apiKey: string,
@@ -314,6 +311,8 @@ export interface IHegemonStore {
           };
         };
       };
+      // ⚠️ Small DTE options are dangerous and should be treated with caution.
+      allowedMinDTE: number;
       pollingDistribution: {
         profile: number;
         account: {

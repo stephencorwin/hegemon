@@ -6,6 +6,7 @@ import {
   startOfYesterday,
   subDays,
   differenceInDays,
+  isFriday,
 } from 'date-fns';
 import axios from 'axios';
 import {isEmpty} from 'lodash';
@@ -17,16 +18,21 @@ const HEADERS = {['Content-Type']: 'application/json'};
 
 export function useOnStartup() {
   const {store, snapshot} = useHegemon();
-  const {
-    status: {allowedMinDTE},
-  } = snapshot;
+  const {profile} = snapshot;
   /**
    * Options Expiration Date
    */
   useEffect(() => {
+    if (!profile?.settings) return;
+    const allowedMinDTE = profile?.settings.allowedMinDTE ?? 0;
     const now = new Date();
 
     let nextFridayDate = nextFriday(now);
+
+    // allow for 0 DTE
+    if (allowedMinDTE === 0 && isFriday(now)) {
+      nextFridayDate = now;
+    }
 
     while (differenceInDays(nextFridayDate, now) < allowedMinDTE) {
       console.info(
@@ -50,7 +56,7 @@ export function useOnStartup() {
     console.info(
       `[Hegemon] Options expiration date was automatically set to ${store.status.optionsExpiration}`
     );
-  }, [allowedMinDTE, store]);
+  }, [profile, store]);
 
   /**
    * Weekly Sentiment Cache

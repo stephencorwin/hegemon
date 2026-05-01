@@ -32,7 +32,10 @@ export function usePersist() {
      */
     store.restoreData = async () => {
       const {
-        data: {profile, weeklySentiment},
+        data: {
+          profile,
+          // weeklySentiment
+        },
       } = await axios({
         url: `/data?id=${store.profile.id}`,
         method: 'GET',
