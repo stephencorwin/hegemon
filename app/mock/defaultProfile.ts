@@ -10,6 +10,8 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       'NVDA',
       'AMD',
       'HOOD',
+      'NFLX',
+      'DIS',
       'TSLA',
       'HIMS',
       'UNH',
@@ -24,8 +26,8 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
     },
     thresholds: {
       profit: {
-        dailyGoal: 1.14,
-        positionGoal: 1.14,
+        dailyGoal: 1.2,
+        positionGoal: 1.2,
       },
       stock: {
         changePercentIsHighlyPositive: 0.015,
