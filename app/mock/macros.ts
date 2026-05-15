@@ -20,7 +20,7 @@ export const MACRO_FLARE: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.CALL,
-      optionTranche: 0,
+      optionTranche: +1,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.14},
@@ -151,7 +151,7 @@ export const MACRO_FROST_BOLT: IMacro = {
       action: MACRO_ACTION.BUY,
       orderClass: ORDER_CLASS.OPTION,
       optionType: OPTION_TYPE.PUT,
-      optionTranche: 0,
+      optionTranche: -1,
       quantity: 1,
       automation: [
         {type: AUTOMATION_TYPE.LIMIT_SELL, quantityPercent: 1, goal: 1.14},

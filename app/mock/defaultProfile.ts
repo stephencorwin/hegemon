@@ -10,8 +10,6 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       'NVDA',
       'AMD',
       'HOOD',
-      'NFLX',
-      'DIS',
       'TSLA',
       'HIMS',
       'UNH',
@@ -48,7 +46,7 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       current: 1,
       levels: [1, 2, 3, 5, 10, 15],
     },
-    allowedMinDTE: 0,
+    allowedMinDTE: 1,
     // https://documentation.tradier.com/brokerage-api/overview/rate-limiting
     // total rpm (Requests Per Minute) not to exceed:
     // [120 production / 60 paper] /accounts, /watchlists/, /users, /orders
