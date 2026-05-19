@@ -14,9 +14,7 @@ export const DEFAULT_PROFILE: IHegemonStore['profile'] = {
       'HIMS',
       'UNH',
       'AMZN',
-      'MSFT',
       'GOOGL',
-      'AAPL',
     ],
     positions: {
       sellPercentagesReplacePreviousOrders: true,
