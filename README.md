@@ -14,7 +14,7 @@ Tradier custom client with a strategy builder, macros, and algorithmic execution
 
 ## Getting Started
 - Sign up for an account on [Tradier](https://auth.tradier.com/signup)
-  - Make sure it is a **Cash Account** if the intent is to fund it with less than $25,000 so that you are not restricted by Pattern Day-Trading regulations.
+  - Make sure it is a **Margin Account** so that it is possible to trade multiple times per day.
   - Request **"Options Level 2"** as this level is required for buying/selling naked calls and puts.
 - Generate a paper/sandbox account
 - Generate an API key for both accounts
@@ -33,7 +33,9 @@ I am not sponsored, but would recommend doing cost analysis on which plan would 
 | Interactive Brokers | 2/10              | Free          | ✅               | ✅             | Authentication is horrible. Requires a separate program that requires reauthentication multiple times per day.                                                                                                |
 | Robinhood           | 0/10              | ❌             | ✅               | ✅             | There is an unofficial API, but it is reported that Robinhood actively warns/bans accounts that leverage it. Their stance is that they do not want folks using an API for stocks/option trading at this time. |
 
-I did a small proof of concept for each of the above and Tradier ultimately serviced my needs the best. I did like Alpaca.markets as it was the one I initially started with. However, I was disappointed to find out that they did not support cash accounts. Since my primary strategy is Options Day-Trading, this meant that I would need to meet the Pattern Day-Trader restrictions with Alpaca. Cash accounts are not bound by these restrictions.
+I did a small proof of concept for each of the above and Tradier ultimately serviced my needs the best. I did like Alpaca.markets as it was the one I initially started with. However, I was disappointed to find out that they did not support cash accounts. Since my primary strategy is Options Day-Trading~~, this meant that I would need to meet the Pattern Day-Trader restrictions with Alpaca. Cash accounts are not bound by these restrictions.~~
+
+**(7/7/2026) Update:** PDT restrictions on margin accounts under $25,000 have been removed. Tradier has updated their platform to support this. Given my experience with Tradier at this point, I have been very pleased with their support and pricing. So while the mechanical limitation of needing a cash account has been lifted, I'm choosing to stick with Tradier. There also would be a large amount of work required to move to a different platform at this point. I would consider Robinhood if they ever changed their stance on API usage.
 
 ## Automated bid-ask pricing
 Execution speed of intended macros is prioritized over small differences in the range of the bid-ask spread. The formulas below explain how we are biasing it, but essentially we are not using the mid-point for both, but instead slightly biasing towards their respective "execution speed" price to help guarantee order fulfillment. In the future, there will be a customizable setting to prioritize how close towards the bid or ask is desired.
