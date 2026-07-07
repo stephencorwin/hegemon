@@ -38,7 +38,11 @@ export function PositionTile({id}: IPositionTileProps) {
   const isOption = !!positionData.optionSymbol;
 
   const handleSell =
-    (quantity: number, limit: number, replacePreviousOrders: boolean = false) =>
+    (
+      quantity: number,
+      limit?: number,
+      replacePreviousOrders: boolean = false
+    ) =>
     async () => {
       if (isOption) {
         if (replacePreviousOrders) {
@@ -55,7 +59,7 @@ export function PositionTile({id}: IPositionTileProps) {
           );
         }
 
-        market.options.sell(symbol, optionSymbol, limit, quantity);
+        market.options.sell(symbol, optionSymbol, quantity, limit);
       } else {
         if (replacePreviousOrders) {
           await Promise.all(
@@ -69,7 +73,7 @@ export function PositionTile({id}: IPositionTileProps) {
           );
         }
 
-        market.stocks.sell(symbol, limit, quantity);
+        market.stocks.sell(symbol, quantity, limit);
       }
     };
 
@@ -163,40 +167,10 @@ export function PositionTile({id}: IPositionTileProps) {
           </SellButtonHalf>
         </div>
         <div>
-          {/* <SellButton
-            onClick={handleSell(
-              quantity * 0.1,
-              sellAsk,
-              settings.positions.sellPercentagesReplacePreviousOrders
-            )}
-            title="Attempt to sell 10% of the remaining quantity at the current price."
-          >
-            -10%
-          </SellButton>
-          <SellButton
-            onClick={handleSell(
-              quantity * 0.25,
-              sellAsk,
-              settings.positions.sellPercentagesReplacePreviousOrders
-            )}
-            title="Attempt to sell 25% of the remaining quantity at the current price."
-          >
-            -25%
-          </SellButton>
-          <SellButton
-            onClick={handleSell(
-              quantity * 0.5,
-              sellAsk,
-              settings.positions.sellPercentagesReplacePreviousOrders
-            )}
-            title="Attempt to sell 50% of the remaining quantity at the current price."
-          >
-            -50%
-          </SellButton> */}
           <SellButtonFull
             onClick={handleSell(
               quantity,
-              sellAsk,
+              undefined,
               settings.positions.sellPercentagesReplacePreviousOrders
             )}
             title="Attempt to sell 100% of the remaining quantity at the current price."

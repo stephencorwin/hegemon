@@ -54,13 +54,13 @@ export function MacroBar({style, className, macroIds = []}: IMacroBarProps) {
           await market.options.buy(
             leg.symbol,
             leg.optionSymbol,
-            leg.limit,
-            leg.quantity
+            leg.quantity,
+            leg.limit
           );
           break;
         }
         case ORDER_CLASS.EQUITY: {
-          await market.stocks.buy(leg.symbol, leg.limit, leg.quantity);
+          await market.stocks.buy(leg.symbol, leg.quantity, leg.limit);
           break;
         }
       }

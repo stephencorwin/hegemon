@@ -40,13 +40,12 @@ Execution speed of intended macros is prioritized over small differences in the 
 
 Macros can specify a `limitOffset` and `limitPercent` to further bias in a desired direction.
 
-| Name           | Formula                | Notes                                   |
-| :------------- | :--------------------- | :-------------------------------------- |
-| `range`        | `ask` - `bid`          | Difference between the ask and the bid. |
-| `midAsk`       | `bid` + `range` * 0.50 | Mid-point between the ask and the bid.  |
-| `buyAsk`       | `bid` + `range` * 0.60 | Slightly biased towards the ask price.  |
-| `sellAsk`      | `bid` + `range` * 0.40 | Slightly biased towards the bid price.  |
-| `liquidateAsk` | `bid` + `range` * 0.10 | Heavily biased towards the bid price.   |
+| Name      | Formula                | Notes                                   |
+| :-------- | :--------------------- | :-------------------------------------- |
+| `range`   | `ask` - `bid`          | Difference between the ask and the bid. |
+| `midAsk`  | `bid` + `range` * 0.50 | Mid-point between the ask and the bid.  |
+| `buyAsk`  | `bid` + `range` * 0.60 | Slightly biased towards the ask price.  |
+| `sellAsk` | `bid` + `range` * 0.40 | Slightly biased towards the bid price.  |
 
 ## Roadmap
 - "Settings Page"

@@ -47,7 +47,6 @@ export interface ILink {
   midAsk: number;
   buyAsk: number;
   sellAsk: number;
-  liquidateAsk: number;
   volume: number;
   openInterest: number;
 }
@@ -75,15 +74,15 @@ export interface IOptions {
 export interface IOptionsOrderReceipt {
   assetId: string;
   symbol: string;
-  limit: number;
   quantity: number;
+  limit?: number;
 }
 
 export interface IStocksOrderReceipt {
   assetId: string;
   symbol: string;
-  limit: number;
   quantity: number;
+  limit?: number;
 }
 
 export interface IStock {
@@ -98,7 +97,6 @@ export interface IStock {
   midAsk: number;
   buyAsk: number;
   sellAsk: number;
-  liquidateAsk: number;
   change: number;
   changePercentage: number;
   volume: number;
@@ -119,7 +117,6 @@ export interface IPosition {
   midAsk?: number;
   buyAsk?: number;
   sellAsk?: number;
-  liquidateAsk: number;
   price: number;
   costBasis: number;
   change?: number;
@@ -361,13 +358,13 @@ export interface IHegemonStore {
       fetch: (symbols: string[]) => Promise<{[symbol: string]: IStock}>;
       buy: (
         symbol: string,
-        limit: number,
-        quantity: number
+        quantity: number,
+        limit?: number
       ) => Promise<IStocksOrderReceipt>;
       sell: (
         symbol: string,
-        limit: number,
-        quantity: number
+        quantity: number,
+        limit?: number
       ) => Promise<IStocksOrderReceipt>;
     };
     options: {
@@ -379,14 +376,14 @@ export interface IHegemonStore {
       buy: (
         symbol: string,
         optionSymbol: string,
-        limit: number,
-        quantity: number
+        quantity: number,
+        limit?: number
       ) => Promise<IOptionsOrderReceipt>;
       sell: (
         symbol: string,
         optionSymbol: string,
-        limit: number,
-        quantity: number
+        quantity: number,
+        limit?: number
       ) => Promise<IOptionsOrderReceipt>;
     };
     queue: {
@@ -395,7 +392,7 @@ export interface IHegemonStore {
         optionSymbol?: string;
         side: ORDER_SIDE;
         quantity: number;
-        limit: number;
+        limit?: number;
       }[];
     };
   };

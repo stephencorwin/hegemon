@@ -158,7 +158,7 @@ export function useTradier() {
           optionStrike = link.strike;
         }
 
-        const {midAsk, buyAsk, sellAsk, liquidateAsk} = calcPrices(bid, ask);
+        const {midAsk, buyAsk, sellAsk} = calcPrices(bid, ask);
         const change = formatNumber(sellAsk - price);
         const changePercent = formatNumber(sellAsk / price - 1, 3);
 
@@ -173,7 +173,6 @@ export function useTradier() {
           midAsk,
           buyAsk,
           sellAsk,
-          liquidateAsk,
           bid,
           costBasis: position.cost_basis,
           change,
@@ -297,10 +296,7 @@ export function useTradier() {
       return (Array.isArray(quote) ? quote : [quote]).reduce<{
         [symbol: string]: IStock;
       }>((acc, quote) => {
-        const {midAsk, buyAsk, sellAsk, liquidateAsk} = calcPrices(
-          quote.bid,
-          quote.ask
-        );
+        const {midAsk, buyAsk, sellAsk} = calcPrices(quote.bid, quote.ask);
         acc[quote.symbol] = {
           symbol: quote.symbol,
           last: quote.last,
@@ -314,7 +310,6 @@ export function useTradier() {
           midAsk,
           buyAsk,
           sellAsk,
-          liquidateAsk,
           changePercentage: quote.change_percentage,
           volume: quote.volume,
           averageVolume: quote.average_volume,
@@ -331,8 +326,8 @@ export function useTradier() {
      */
     store.market.stocks.buy = async (
       symbol: string,
-      limit: number,
-      quantity: number
+      quantity: number,
+      limit?: number
     ) => {
       let url = `${BASE_URL}/accounts/${accountId}/orders`;
 
@@ -347,9 +342,15 @@ export function useTradier() {
           symbol,
           side: ORDER_SIDE.BUY,
           quantity: Math.floor(quantity),
-          type: 'limit',
           duration: 'gtc',
-          price: formatNumber(limit),
+          ...(!!limit
+            ? {
+                type: 'limit',
+                price: formatNumber(limit),
+              }
+            : {
+                type: 'market',
+              }),
         },
       });
 
@@ -359,8 +360,8 @@ export function useTradier() {
       return {
         assetId: order?.id,
         symbol,
-        limit,
         quantity,
+        limit,
       };
     };
 
@@ -369,8 +370,8 @@ export function useTradier() {
      */
     store.market.stocks.sell = async (
       symbol: string,
-      limit: number,
-      quantity: number
+      quantity: number,
+      limit?: number
     ) => {
       let url = `${BASE_URL}/accounts/${accountId}/orders`;
 
@@ -385,9 +386,15 @@ export function useTradier() {
           symbol,
           side: ORDER_SIDE.SELL,
           quantity: Math.floor(quantity),
-          type: 'limit',
           duration: 'gtc',
-          price: formatNumber(limit),
+          ...(!!limit
+            ? {
+                type: 'limit',
+                price: formatNumber(limit),
+              }
+            : {
+                type: 'market',
+              }),
         },
       });
 
@@ -397,8 +404,8 @@ export function useTradier() {
       return {
         assetId: order.id,
         symbol,
-        limit,
         quantity,
+        limit,
       };
     };
 
@@ -440,10 +447,7 @@ export function useTradier() {
       };
 
       sortBy(option, ['strike']).forEach((link) => {
-        const {midAsk, buyAsk, sellAsk, liquidateAsk} = calcPrices(
-          link.bid,
-          link.ask
-        );
+        const {midAsk, buyAsk, sellAsk} = calcPrices(link.bid, link.ask);
 
         const newLink: ILink = {
           symbol: symbol,
@@ -454,7 +458,6 @@ export function useTradier() {
           midAsk,
           buyAsk,
           sellAsk,
-          liquidateAsk,
           volume: link.volume,
           openInterest: link.open_interest,
         };
@@ -485,17 +488,13 @@ export function useTradier() {
         ...chain.put.above.slice(0, rangeCountLimit),
       ];
 
-      const {midAsk, buyAsk, sellAsk, liquidateAsk} = calcPrices(
-        stock.bid,
-        stock.ask
-      );
+      const {midAsk, buyAsk, sellAsk} = calcPrices(stock.bid, stock.ask);
       return {
         symbol,
         ask: stock.ask,
         midAsk,
         buyAsk,
         sellAsk,
-        liquidateAsk,
         bid: stock.bid,
         expiration,
         chain,
@@ -508,8 +507,8 @@ export function useTradier() {
     store.market.options.buy = async (
       symbol: string,
       optionSymbol,
-      limit: number,
-      quantity: number
+      quantity: number,
+      limit?: number
     ) => {
       let url = `${BASE_URL}/accounts/${accountId}/orders`;
 
@@ -525,9 +524,15 @@ export function useTradier() {
           option_symbol: optionSymbol,
           side: ORDER_SIDE.BUY_TO_OPEN,
           quantity: Math.floor(quantity),
-          type: 'limit',
           duration: 'gtc',
-          price: formatNumber(limit),
+          ...(!!limit
+            ? {
+                type: 'limit',
+                price: formatNumber(limit),
+              }
+            : {
+                type: 'market',
+              }),
         },
       });
 
@@ -537,8 +542,8 @@ export function useTradier() {
       return {
         assetId: order.id,
         symbol,
-        limit,
         quantity,
+        limit,
       };
     };
 
@@ -548,8 +553,8 @@ export function useTradier() {
     store.market.options.sell = async (
       symbol: string,
       optionSymbol,
-      limit: number,
-      quantity: number
+      quantity: number,
+      limit?: number
     ) => {
       // if the quantity was rounded down to 0, we escape
       // because we can't sell 0 of something
@@ -569,9 +574,15 @@ export function useTradier() {
           option_symbol: optionSymbol,
           side: ORDER_SIDE.SELL_TO_CLOSE,
           quantity: Math.floor(quantity),
-          type: 'limit',
           duration: 'gtc',
-          price: formatNumber(limit),
+          ...(!!limit
+            ? {
+                type: 'limit',
+                price: formatNumber(limit),
+              }
+            : {
+                type: 'market',
+              }),
         },
       });
 
@@ -581,8 +592,8 @@ export function useTradier() {
       return {
         assetId: order.id,
         symbol,
-        limit,
         quantity,
+        limit,
       };
     };
 
